@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sensei Node</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      charset="UTF-8"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+    />
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NKB23DR');</script>
+    <!-- End Google Tag Manager -->
+  </head>
+  <style>
+    #loader {
+      width:100vw;
+      height:100vh;
+      position:fixed;
+      top:0;
+      left:0;
+      background: #000;
+      z-index: 10;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes loader {
+      from {
+        transform: scale(0.5);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .loader-logo {
+      background-image: url('https://i1.lensdump.com/i/rvb5gC.png');
+      width: 129px;
+      height: 182px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      animation: loader 1s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+  </style>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKB23DR"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <div id="root"></div>
+    <div id="loader">
+      <div class="loader-logo"></div>
+    </div>
+  </body>
+  <script>
+    window.addEventListener("load", function(event) {
+      let loader = document.getElementById("loader");
+      loader.remove();
+    });
+  </script>
+</html>
