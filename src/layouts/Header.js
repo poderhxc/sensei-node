@@ -7,6 +7,7 @@ import media from '../styles/media';
 import { palette } from '../styles/palette';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { HashLink as Link } from 'react-router-hash-link';
+import senseiLogo from '../../public/sensei-logo-white.png';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -157,7 +158,7 @@ const Header = () => {
       <div class="container">
         <div class="logo-container">
           <Link to="/" replace={pathname === '/'}>
-            <img src="/public/sensei-logo-white.png" />
+            <img src={senseiLogo} />
           </Link>
         </div>
         <div css={[StylesMenuMobile]}>
