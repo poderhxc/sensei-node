@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { css } from '@emotion/react';
+import { isMobile } from 'react-device-detect';
+
 import media from '../../styles/media';
 import Slider from 'react-slick';
+import video1 from '../../../public/hero-01.mp4'
+import video2 from '../../../public/hero-02.mp4'
+import video3 from '../../../public/hero-03.mp4'
+
+import videoMobile1 from '../../../public/hero-1-mobile.mp4'
+import videoMobile2 from '../../../public/hero-2-mobile.mp4'
+import videoMobile3 from '../../../public/hero-3-mobile.mp4'
+
 const Styles = css`
   background: #0C0C0C;
   z-index: 2;
@@ -49,10 +59,14 @@ const Styles = css`
     display: none!important;
   }
   .hero-3 {
-    background: url('https://i3.lensdump.com/i/rvh3L5.jpg');
-    background-size: 130%;
-    background-repeat: no-repeat;
-    background-position: center;
+    position:relative;
+    .container {
+      position: absolute; 
+      top: 0;
+      left:0;
+      right:0;
+      width:100vw;
+    }
     
     h1 {
       margin-top:50px;
@@ -60,10 +74,7 @@ const Styles = css`
     }
   }
   .hero-2 {
-    background: url('https://i.lensdump.com/i/rvh4az.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    position:relative;
   }
 
   .float-left {
@@ -79,8 +90,31 @@ const Styles = css`
     text-align:right;
     align-self:flex-end;
   }
-
+  video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+  .hero-slide {
+    position: relative;
+    .container {
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+    }
+  }
   ${media.medium} {
+    .hero-slide {
+      padding-left: 0;
+      padding-right: 0;
+      video {
+        width:100vw
+      }
+    }
+
     padding-top: 0;
     height: calc(100vh);
     .hero-3 {
@@ -92,15 +126,13 @@ const Styles = css`
       height: 200px;
       margin: auto;
     }
+
     br {display:none;}
-    .hero-2, .hero-3, .hero-1 {
-      padding-left: 40px!important;
-      padding-right: 40px!important;
-    }
 
     .title {
       width: 100%;
       overflow: hidden;
+      padding: 0 40px;
     }
 
     .hero-image-mobile {
@@ -126,6 +158,7 @@ const Styles = css`
 `;
 
 const Hero = () => {
+  const [ replayVideo, setReplayVideo ] = useState(0);
   const settings = {
     dots: true,
     infinite: true,
@@ -133,13 +166,19 @@ const Hero = () => {
     autoplay: true,
     autoplaySpeed: 6000,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    beforeChange: (oldIndex, newIndex) => {
+      setReplayVideo(newIndex);
+    }
   };
 
   return (
     <div css={[Styles]}>
       <Slider {...settings}>
-        <section className="hero-3" >
+        <section className="hero-slide hero-3" >
+          <video playsInline autoPlay muted loop>
+            <source src={isMobile ? videoMobile1 : video1} type="video/mp4" />
+          </video>
           <div className="container">
             <div className="title">
               <div>
@@ -150,7 +189,11 @@ const Hero = () => {
           </div>
         </section>
 
-        <section className="hero-2" >
+        <section className="hero-slide hero-2" >
+          { replayVideo === 1 && (<video playsInline autoPlay muted>
+            <source src={isMobile ? videoMobile2 : video2} />
+          </video>) }
+
           <div  className="container">
             <div  className="title">
                 <h1 className="float-left">Enterprise level <br/>Blockchain infrastructure</h1>
@@ -159,12 +202,13 @@ const Hero = () => {
           </div>
         </section>
 
-        <section  className="hero-1"  >
-          <div  className="container">
-            <div  className="title">
+        <section className="hero-slide hero-1"  >
+        {  replayVideo === 2 && (<video playsInline autoPlay muted>
+            <source src={isMobile ? videoMobile3 : video3} type="video/mp4" />
+          </video>) }
+          <div className="container">
+            <div className="title">
                 <h1>The Revolution will be Decentralized.</h1>
-                <img  className="hero-image" src="https://i1.lensdump.com/i/ref1se.png" />
-                <img  className="hero-image-mobile" src="https://i.lensdump.com/i/rnJTvP.png" />
                 <div>
                   <h1>Own your node.</h1>
                   <h2>Accesible and reliable one-click private nodes for everybody.</h2>

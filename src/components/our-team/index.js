@@ -169,7 +169,7 @@ const teamMembers = [
   {
     name: "Jesus Chitty",
     title: "CAO",
-    subtitle: "Chief Arquitect",
+    subtitle: "Chief Arquitect Officer",
     picture: "https://i1.lensdump.com/i/rnjgXb.png",
     linkedin: "https://www.linkedin.com/in/jesuschitty/",
     description: [

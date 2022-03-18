@@ -64,7 +64,7 @@ const Header = () => {
       height: 70px;
       z-index: 6;
       .logo-container {
-        max-width:80vw;
+        max-width:75vw;
         img {
           max-width:100%;
         }
@@ -157,7 +157,7 @@ const Header = () => {
       <div class="container">
         <div class="logo-container">
           <Link to="/" replace={pathname === '/'}>
-            <img src={'https://i.lensdump.com/i/rvhltr.png'} />
+            <img src="/public/sensei-logo-white.png" />
           </Link>
         </div>
         <div css={[StylesMenuMobile]}>
