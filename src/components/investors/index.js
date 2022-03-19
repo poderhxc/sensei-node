@@ -1,6 +1,13 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import media from '../../styles/media';
+import borderless from '../../../public/borderless-capital.png';
+import newtopia from '../../../public/newtopia.png';
+import sur from '../../../public/sur-ventures.png';
+import spice from '../../../public/spice.png';
+import dg from '../../../public/dg.png';
+import xeibo from '../../../public/xeibo-capital.png';
+
 
 const Styles = css`
   z-index: 3;
@@ -66,6 +73,7 @@ const Styles = css`
         font-size: 1.3rem;
         display:flex;
         img {
+          width:250px;
           margin:auto;
         }
       }
@@ -125,32 +133,32 @@ const Investors = () => {
           <div class="logos-container">
             <div class="logo">
                 <a target="_blank" href="https://www.borderlesscapital.io/">
-                 <img alt="borderless"  src="https://i.lensdump.com/i/rea9mc.png" />
+                 <img alt="borderless"  src={borderless} />
                 </a>
             </div>
             <div class="logo">
                 <a target="_blank" href="https://newtopia.vc/">
-                 <img alt="newtopia"  src="https://i.lensdump.com/i/rea6Tk.png" />
+                 <img alt="newtopia"  src={newtopia} />
                 </a>
             </div>
             <div class="logo">
                 <a target="_blank" href="https://sur.vc/">
-                 <img alt="sur"  src="https://i3.lensdump.com/i/reaVZ1.png" />
+                 <img alt="sur"  src={sur} />
                 </a>
             </div>
             <div class="logo">
                 <a target="_blank" href="https://spicevc.com/">
-                 <img alt="spice" src="https://i1.lensdump.com/i/reaC7x.png" />
+                 <img alt="spice" src={spice} />
                 </a>
             </div>
             <div class="logo">
                 <a target="_blank" href="https://www.11-11dg.partners/">
-                 <img alt="dg" src="https://i2.lensdump.com/i/reaJUH.png" />
+                 <img alt="dg" src={dg} />
                 </a>
             </div>
             <div class="logo">
                 <a target="_blank" href="https://xeibocapital.com/">
-                 <img alt="xeibo" src="https://i3.lensdump.com/i/reaEye.png" />
+                 <img alt="xeibo" src={xeibo} />
                 </a>
             </div>
           </div>
