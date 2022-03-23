@@ -175,7 +175,7 @@ const teamMembers = [
     description: [
       "Co-Founder of EOS Argentina.",
       "Current miner and node validator on over 20 different Blockchains.",
-      "Creator of open source DEFI Platform Evodex.io",
+      "Co-Creator of open source DEFI Platform Evodex.io",
     ]
   }
 ];
