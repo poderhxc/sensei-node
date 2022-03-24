@@ -118,6 +118,5 @@ module.exports = {
     path: resolve(__dirname, 'dist'),
     filename: 'static/js/[name].[contenthash:8].js',
     chunkFilename: 'static/js/[name].[id].[contenthash:8].chunk.js',
-    publicPath: '/assets/',
   },
 };
