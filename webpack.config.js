@@ -38,6 +38,10 @@ module.exports = {
   entry: {
     app: resolve(__dirname, 'src/index'),
   },
+  devServer: {
+    contentBase: resolve(__dirname, './emailsignature'),
+    contentBasePublicPath: '/emailsignature'
+  },
   resolve: {
     modules: ['node_modules'],
     mainFiles: ['index'],
@@ -114,5 +118,6 @@ module.exports = {
     path: resolve(__dirname, 'dist'),
     filename: 'static/js/[name].[contenthash:8].js',
     chunkFilename: 'static/js/[name].[id].[contenthash:8].chunk.js',
+    publicPath: '/assets/',
   },
 };
