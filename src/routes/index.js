@@ -6,7 +6,6 @@ const AboutUsPage = lazy(() => import('../pages/AboutUsPage'));
 const ServicesPage = lazy(() => import('../pages/ServicesPage'));
 const ContactPage = lazy(() => import('../pages/ContactPage'));
 const ErrorPage = lazy(() => import('../pages/ErrorPage'));
-const SignaturePage = lazy(() => import('../pages/SignaturePage'));
 const SignatureIdPage = lazy(() => import('../pages/SignatureIdPage'));
 
 const Routes = () => {
@@ -17,7 +16,6 @@ const Routes = () => {
         <Route exact path="/about-us" component={AboutUsPage} />
         <Route exact path="/services" component={ServicesPage} />
         <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/signature" component={SignaturePage} />
         <Route exact path="/signature/:id" component={SignatureIdPage} />
 
         <Route component={() => <ErrorPage status={404} message="Page not found." />} />
