@@ -154,8 +154,8 @@ const Header = () => {
 
   return (
     <header css={[headerStyle(isLight)]}>
-      <div class="container">
-        <div class="logo-container">
+      <div className="container">
+        <div className="logo-container">
           <Link to="/" replace={pathname === '/'}>
             <img src={'https://i.lensdump.com/i/rvhltr.png'} />
           </Link>
@@ -163,15 +163,15 @@ const Header = () => {
         <div css={[StylesMenuMobile]}>
           <button onClick={handleToggleMenu} 
           className={`open ${menuOpened ? 'change' : ''}`}>
-            <div class="container">
-              <div class="bar1"></div>
-              <div class="bar2"></div>
-              <div class="bar3"></div>
+            <div className="container">
+              <div className="bar1"></div>
+              <div className="bar2"></div>
+              <div className="bar3"></div>
             </div>
 
           </button>
         </div>
-        <nav class="menu">
+        <nav className="menu">
           <ul>
             <li>
               <Link onClick={() => setMenuOpened(false)} to="/#about-us">About</Link>

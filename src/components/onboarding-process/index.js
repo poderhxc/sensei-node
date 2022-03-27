@@ -117,20 +117,20 @@ const Styles = css`
 const OnboardingProcess = () => {
   return (
     <div css={[Styles]}>
-      <div class="container">
-        <div class="rounded-box">
-          <div class="black-container">
-            <h2>We simplify the <span class="bold green">onboarding process</span> <span class="bold">of businesses</span> to the blockchain.</h2>
+      <div className="container">
+        <div className="rounded-box">
+          <div className="black-container">
+            <h2>We simplify the <span className="bold green">onboarding process</span> <span className="bold">of businesses</span> to the blockchain.</h2>
           </div>
-          <div class="green-container">
+          <div className="green-container">
             No matter what protocol you need to connect. 
             Our platform provides a simple node deployment configuration and
             monitoring process with enterprise-grade security,
             significantly reducing the time to market without sacrificing the performance.
           </div>
-          <div class="image-container">
-            <img class="btm-lines" src="https://i1.lensdump.com/i/rLzx4H.png" />
-            <img class="mid-circles" src="https://i2.lensdump.com/i/rYoOEC.png" />
+          <div className="image-container">
+            <img className="btm-lines" src="https://i1.lensdump.com/i/rLzx4H.png" />
+            <img className="mid-circles" src="https://i2.lensdump.com/i/rYoOEC.png" />
           </div>
         </div>
       </div>

@@ -184,16 +184,16 @@ const MemberBox = ({name, title, subtitle, picture, linkedin, description}) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = (e) => { setIsOpen(!isOpen); }
   return(
-  <div onClick={handleOpen} class={`member-container ${isOpen ? 'open' : ''}`}>
+  <div onClick={handleOpen} className={`member-container ${isOpen ? 'open' : ''}`}>
     <h3>{name}</h3>
     <span className="title">{title}</span>
     <span className="subtitle">{subtitle}</span>
-    <a class="linkedin-link" href={linkedin} target="_blank">
+    <a className="linkedin-link" href={linkedin} target="_blank">
       <img src="https://i.lensdump.com/i/rnjwq3.png" />
     </a>
     <img src={picture} />
     <ul>
-      { description && description.map( (e) => <li>{e}</li>) }
+      { description && description.map((e, index) => <li key={index}>{e}</li>) }
     </ul>
   </div>
   );
@@ -202,12 +202,12 @@ const MemberBox = ({name, title, subtitle, picture, linkedin, description}) => {
 const OurTeam = () => {
   return (
     <div id="team" css={[Styles]}>
-      <div class="container">
-        <span class="tag">
+      <div className="container">
+        <span className="tag">
           Our Team
         </span>
-        <div class="members-container">
-          { teamMembers.map((member) => <MemberBox {...member} />) }
+        <div className="members-container">
+          { teamMembers.map((member, index) => <MemberBox key={index} {...member} />) }
         </div>
       </div>
     </div>

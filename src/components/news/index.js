@@ -63,16 +63,14 @@ const news = [
 
 const NewBox = ({title, date, description, picture, link, font}) => {
   return(
-  <a class="new-container" target="_blank" href={link}>
+  <a className="new-container" target="_blank" href={link}>
     <h3>{title}</h3>
     <span className="date">{date}</span>
     <p className="title">{description}</p>
-    <div class="new-img" style={{backgroundImage: `url(${picture})`}}></div>
+    <div className="new-img" style={{backgroundImage: `url(${picture})`}}></div>
     <div className="link-icon">
-      <a >
         <NewsIcon />
         <span>{font}</span>
-      </a>
     </div>
   </a>
   );
@@ -246,8 +244,8 @@ const News = () => {
 
   return (
     <div id="news" css={[Styles]}>
-      <div class="container">
-        <span class="tag">
+      <div className="container">
+        <span className="tag">
           In the News
         </span>
         <h2>See who's talking about SenseiNode in the press.</h2>
@@ -259,7 +257,7 @@ const News = () => {
         onMouseMove={handleMouseMove}
         ref={myRef}>
         <div className="news-container">
-          { news.map((newdata) => <NewBox {...newdata} />) }
+          {news.map((newdata, index) => <NewBox key={index} {...newdata} />) }
         </div>
       </div>
     </div>

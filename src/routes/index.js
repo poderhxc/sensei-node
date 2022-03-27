@@ -16,7 +16,7 @@ const Routes = () => {
         <Route exact path="/services" component={ServicesPage} />
         <Route exact path="/contact" component={ContactPage} />
 
-        <Route component={_ => <ErrorPage status={404} message="Page not found." />} />
+        <Route component={() => <ErrorPage status={404} message="Page not found." />} />
       </Switch>
     </Suspense>
   );

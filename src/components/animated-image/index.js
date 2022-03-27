@@ -53,7 +53,7 @@ const AnimatedImage = ({ imageUrl, direction, color, animated=true }) => {
   `; 
   return (
     <div css={[Styles]}>
-      <div class="prspct-img"></div>
+      <div className="prspct-img"></div>
     </div>
   );
 }

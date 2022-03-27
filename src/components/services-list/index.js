@@ -150,8 +150,6 @@ const services = [
       with no slashing and guaranteed uptime across all networks.`,
   },
   {
-  },
-  {
     button: {
       link: 'https://us5.list-manage.com/contact-form?u=9a345a8d92f88e03240efcfb6&form_id=d832bc00fc84c97d62fa9aa05161379d ',
       button_text: 'Contact Us'
@@ -186,13 +184,13 @@ const Service = ({title, subtitle, icon, text, button = {}}) => {
 
   
   return title ? (
-    <div onClick={handleOpen} class={className}>
-      <div class="title-container">
+    <div onClick={handleOpen} className={className}>
+      <div className="title-container">
         <h3>
           {title}
-          { subtitle && (<h4>{subtitle}</h4>)}
         </h3>
-        <div class="title-icon">
+        { subtitle && (<h4>{subtitle}</h4>)}
+        <div className="title-icon">
           {icon}
         </div>
       </div>
@@ -205,12 +203,12 @@ const Service = ({title, subtitle, icon, text, button = {}}) => {
 const ServicesList = () => {
   return (
     <div id="services" css={[Styles]}>
-      <div class="container">
+      <div className="container">
         <h2>
           <span className="highlight">Sensei Node</span> is for
           
-          <div class="services-list">
-            {services.map( (service) => <Service {...service} />)}
+          <div className="services-list">
+            {services.map((service, index) => <Service key={index} {...service} />)}
           </div>
         </h2>
       </div>
