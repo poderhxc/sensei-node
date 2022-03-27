@@ -27,7 +27,7 @@ const SignatureIdPage = () => {
         <>
             {
             signature && id ? (
-                 <div>
+                <div>
                     <img src={signature} alt="signature" />
                 </div>
             )

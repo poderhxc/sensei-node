@@ -5,7 +5,7 @@ import ThemeProvider from './contexts/ThemeContext';
 import './styles/index.scss';
 import { Route, Router, Switch } from 'react-router-dom';
 import { publicRoute } from './routes/publicRoute';
-import SuperRoute from './routes/newIndex';
+import SuperRoute from './routes';
 import PrivateRoute from './routes/privateRoute';
 
 

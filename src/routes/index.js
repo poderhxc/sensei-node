@@ -1,27 +1,9 @@
-import React, { Suspense, lazy } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from "react";
+import { Route as ReactRouterRoute } from "react-router-dom";
 
-const HomePage = lazy(() => import('../pages/HomePage'));
-const AboutUsPage = lazy(() => import('../pages/AboutUsPage'));
-const ServicesPage = lazy(() => import('../pages/ServicesPage'));
-const ContactPage = lazy(() => import('../pages/ContactPage'));
-const ErrorPage = lazy(() => import('../pages/ErrorPage'));
-const SignatureIdPage = lazy(() => import('../pages/SignatureIdPage'));
-
-const Routes = () => {
-  return (
-    <Suspense fallback={<div />}>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/about-us" component={AboutUsPage} />
-        <Route exact path="/services" component={ServicesPage} />
-        <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/signature/:id" component={SignatureIdPage} />
-
-        <Route component={() => <ErrorPage status={404} message="Page not found." />} />
-      </Switch>
-    </Suspense>
-  );
-};
-
-export default Routes;
+const SuperRoute = ({component: Component, ...props}) => {
+    return (
+        <ReactRouterRoute {...props} render={(props) => <Component {...props} />} />
+    );
+}
+export default SuperRoute;
