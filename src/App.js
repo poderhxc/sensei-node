@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import AppLayout from './layouts/AppLayout';
 import ThemeProvider from './contexts/ThemeContext';
@@ -18,12 +18,14 @@ function App() {
     '/about-us',
     '/services',
     '/contact',
+    '*'
   ];
   const privateRoutes = [
     '/signature/:id'
   ];
   return (
     <ErrorBoundary>
+    <Suspense fallback={<div>Loading...</div>}>
     <Switch>
       <Route exact path={publicRoutes}>
         <ThemeProvider>
@@ -42,6 +44,7 @@ function App() {
         <PrivateRoute />
       </Route>
     </Switch>
+    </Suspense>
     </ErrorBoundary>
   );
 }
