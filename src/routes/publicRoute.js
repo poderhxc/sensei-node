@@ -1,8 +1,9 @@
-import HomePage from "../pages/HomePage"
-import AboutUsPage from "../pages/AboutUsPage"
-import ServicesPage from "../pages/ServicesPage"
-import ContactPage from "../pages/ContactPage"
-import ErrorPage from "../pages/ErrorPage"
+import { lazy } from "react"
+
+const HomePage = lazy(() => import("../pages/HomePage"));
+const AboutUsPage = lazy(() => import("../pages/AboutUsPage"));
+const ServicesPage = lazy(() => import("../pages/ServicesPage"));
+const ContactPage = lazy(() => import("../pages/ContactPage"));
 
 export const publicRoute = [
     {

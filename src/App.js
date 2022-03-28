@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 
 import AppLayout from './layouts/AppLayout';
 import ThemeProvider from './contexts/ThemeContext';
@@ -9,9 +9,9 @@ import PrivateRoute from './routes/privateRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 
 import './styles/index.scss';
-import ErrorPage from './pages/ErrorPage';
+import Fallback from './components/fallback';
 
-
+const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 
 function App() {
   const publicRoutes = [
@@ -25,7 +25,7 @@ function App() {
   ];
   return (
     <ErrorBoundary>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Fallback />}>
     <Switch>
       <Route exact path={publicRoutes}>
         <ThemeProvider>
