@@ -7,7 +7,7 @@ import 'normalize.css';
 import App from './App';
 
 
-ReactDOM.hydrate((
+ReactDOM.render((
   <BrowserRouter>
     <HashRouter>
       <App />

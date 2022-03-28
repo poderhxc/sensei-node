@@ -15,8 +15,7 @@
     "start": "NODE_ENV=development webpack serve --progress",
     "build": "NODE_ENV=production webpack",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "ssr": "NODE_ENV=development node server/index.js"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@babel/preset-env": "^7.14.8",
