@@ -65,16 +65,16 @@ const Styles = css`
 const CompanyOverview = () => {
   return (
     <div id="about-us" css={[Styles]}>
-      <div class="container">
-        <div class="gray-background-round">
-          <div class="content-left">
-            <span class="tag">
+      <div className="container">
+        <div className="gray-background-round">
+          <div className="content-left">
+            <span className="tag">
               Company Overview
             </span>
 
             <p>
               We drive the decentralization of the blockchain
-              ecosystem in Latin America with a <span class="blue-line">simple, 
+              ecosystem in Latin America with a <span className="blue-line">simple, 
               scalable and secure</span> node management platform.
               Our nodes provide enterprise level availability,
               distributed on leading hosting facilities locally on

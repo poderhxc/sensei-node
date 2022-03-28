@@ -12,7 +12,7 @@ const AboutUsPage = () => {
       <Hero title={"About Us"} />
 
       <StyledSection color={"white"} >
-        <div class="container column">
+        <div className="container column">
           <h2>About Wanted <br/>
             Crew International</h2>
 
@@ -21,7 +21,7 @@ const AboutUsPage = () => {
       </StyledSection>
 
       <StyledSection color={"black"} >
-        <div class="container column">
+        <div className="container column">
           <h2>About Wanted <br/>
             Crew International</h2>
 

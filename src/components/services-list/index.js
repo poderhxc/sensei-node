@@ -62,6 +62,7 @@ const Styles = css`
       font-size: 1.4rem; 
       color: #fff;
       font-weight: 400;
+      line-height: 1.8rem!important;
       padding: 0;
     }
     .title-container {
@@ -187,13 +188,13 @@ const Service = ({title, subtitle, icon, text, button = {}}) => {
 
   
   return title ? (
-    <div onClick={handleOpen} class={className}>
-      <div class="title-container">
+    <div onClick={handleOpen} className={className}>
+      <div className="title-container">
         <h3>
           {title}
           { subtitle && (<h4>{subtitle}</h4>)}
         </h3>
-        <div class="title-icon">
+        <div className="title-icon">
           {icon}
         </div>
       </div>
@@ -206,12 +207,12 @@ const Service = ({title, subtitle, icon, text, button = {}}) => {
 const ServicesList = () => {
   return (
     <div id="services" css={[Styles]}>
-      <div class="container">
+      <div className="container">
         <h2>
           <span className="highlight">Sensei Node</span> is for
           
           <div class="services-list">
-            {services.map( (service) => <Service {...service} />)}
+            {services.map( (service, index) => <Service key={index} {...service} />)}
             { isMobile && <a  className="contact-button"  href="https://us5.list-manage.com/contact-form?u=9a345a8d92f88e03240efcfb6&form_id=d832bc00fc84c97d62fa9aa05161379d" target="_blank" >
                 Contact us
               </a>}

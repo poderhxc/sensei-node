@@ -6,13 +6,13 @@ import ImageWithText from '../components/image-text';
 import StyledSection from '../components/styled-section';
 
 
-const AboutUsPage = () => {
+const ServicesPage = () => {
   return (
     <>
       <Hero title={"Services"} />
 
       <StyledSection color={"white"} >
-        <div class="container column">
+        <div className="container column">
           <h2>About Wanted <br/>
             Crew International</h2>
 
@@ -23,4 +23,4 @@ const AboutUsPage = () => {
   );
 };
 
-export default AboutUsPage;
+export default ServicesPage;

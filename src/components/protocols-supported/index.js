@@ -77,7 +77,7 @@ const Styles = css`
 const ProtocolsSupported = () => {
   return (
     <div css={[Styles]}>
-      <div class="container">
+      <div className="container">
         <h2>
           <span className="green">
             Protocols Supported

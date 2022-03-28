@@ -18,7 +18,7 @@ const ContactPage = () => {
       <Hero title={"Contact"} />
 
       <StyledSection styles={contactStyles} color={"black"} >
-        <div class="container column">
+        <div className="container column">
           <h2>Contact</h2>
 
           <Form />
