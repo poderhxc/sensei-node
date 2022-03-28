@@ -7,6 +7,7 @@ import media from '../styles/media';
 import { palette } from '../styles/palette';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { HashLink as Link } from 'react-router-hash-link';
+import senseiLogo from '../../public/sensei-logo-white.png';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -64,7 +65,7 @@ const Header = () => {
       height: 70px;
       z-index: 6;
       .logo-container {
-        max-width:80vw;
+        max-width:75vw;
         img {
           max-width:100%;
         }
@@ -157,7 +158,7 @@ const Header = () => {
       <div className="container">
         <div className="logo-container">
           <Link to="/" replace={pathname === '/'}>
-            <img src={'https://i.lensdump.com/i/rvhltr.png'} />
+            <img src={senseiLogo} />
           </Link>
         </div>
         <div css={[StylesMenuMobile]}>

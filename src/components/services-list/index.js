@@ -7,6 +7,7 @@ import ExchangesIcon from '../icons/exchanges';
 import BlockchainIcon from '../icons/blockchain';
 import TokenHoldersIcon from '../icons/token-holders';
 import BanksIcon from '../icons/banks';
+import { isMobile } from 'react-device-detect';
 
 const Styles = css`
   z-index: 3;
@@ -207,8 +208,11 @@ const ServicesList = () => {
         <h2>
           <span className="highlight">Sensei Node</span> is for
           
-          <div className="services-list">
-            {services.map((service, index) => <Service key={index} {...service} />)}
+          <div class="services-list">
+            {services.map( (service, index) => <Service key={index} {...service} />)}
+            { isMobile && <a  className="contact-button"  href="https://us5.list-manage.com/contact-form?u=9a345a8d92f88e03240efcfb6&form_id=d832bc00fc84c97d62fa9aa05161379d" target="_blank" >
+                Contact us
+              </a>}
           </div>
         </h2>
       </div>
