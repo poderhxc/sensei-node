@@ -6,7 +6,7 @@ import ImageWithText from '../components/image-text';
 import StyledSection from '../components/styled-section';
 
 
-const AboutUsPage = () => {
+const ServicesPage = () => {
   return (
     <>
       <Hero title={"Services"} />
@@ -23,4 +23,4 @@ const AboutUsPage = () => {
   );
 };
 
-export default AboutUsPage;
+export default ServicesPage;

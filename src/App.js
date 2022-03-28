@@ -1,12 +1,15 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import AppLayout from './layouts/AppLayout';
 import ThemeProvider from './contexts/ThemeContext';
-import './styles/index.scss';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { publicRoute } from './routes/publicRoute';
 import SuperRoute from './routes';
 import PrivateRoute from './routes/privateRoute';
+import ErrorBoundary from './components/ErrorBoundary';
+
+import './styles/index.scss';
+
 
 
 function App() {
@@ -20,7 +23,7 @@ function App() {
     '/signature/:id'
   ];
   return (
-    <Suspense fallback={<div />}>
+    <ErrorBoundary>
     <Switch>
       <Route exact path={publicRoutes}>
         <ThemeProvider>
@@ -39,7 +42,7 @@ function App() {
         <PrivateRoute />
       </Route>
     </Switch>
-  </Suspense>
+    </ErrorBoundary>
   );
 }
 

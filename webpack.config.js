@@ -100,7 +100,7 @@ module.exports = {
   },
   output: {
     path: resolve(__dirname, 'dist'),
-    filename: 'static/js/[name].[contenthash:8].js',
+    filename: 'static/js/bundle.js',
     chunkFilename: 'static/js/[name].[id].[contenthash:8].chunk.js',
   },
 };

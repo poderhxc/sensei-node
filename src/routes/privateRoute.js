@@ -1,7 +1,5 @@
-import { lazy } from "react";
 import { Route } from "react-router-dom"
-
-const SignatureIdPage = lazy(() => import('../pages/SignatureIdPage'));
+import SignatureIdPage from "../pages/SignatureIdPage";
 
 const privateRoutes = [
     {
@@ -17,7 +15,7 @@ const PrivateRoute = () => {
             {
                 privateRoutes.map(({ path, component, exact }) => {
                     return (
-                        <Route key={path} path={path} exact={exact} component={component} />
+                        <Route key={path} path={path} exact={exact} component={SignatureIdPage} />
                     )
                 })
             }
