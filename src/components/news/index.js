@@ -69,8 +69,10 @@ const NewBox = ({title, date, description, picture, link, font}) => {
     <p className="title">{description}</p>
     <div className="new-img" style={{backgroundImage: `url(${picture})`}}></div>
     <div className="link-icon">
+      <div className="icon-container">
         <NewsIcon />
         <span>{font}</span>
+      </div>
     </div>
   </a>
   );
@@ -161,7 +163,7 @@ const News = () => {
           padding-top:0;
           color: #fff;
         }
-        .link-icon a  {
+        .link-icon .icon-container  {
           display: flex;
           flex-direction: row;
           position: absolute;

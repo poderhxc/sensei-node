@@ -62,6 +62,7 @@ const Styles = css`
       font-size: 1.4rem; 
       color: #fff;
       font-weight: 400;
+      line-height: 1.8rem!important;
       padding: 0;
     }
     .title-container {
@@ -151,6 +152,8 @@ const services = [
       with no slashing and guaranteed uptime across all networks.`,
   },
   {
+  },
+  {
     button: {
       link: 'https://us5.list-manage.com/contact-form?u=9a345a8d92f88e03240efcfb6&form_id=d832bc00fc84c97d62fa9aa05161379d ',
       button_text: 'Contact Us'
@@ -189,8 +192,8 @@ const Service = ({title, subtitle, icon, text, button = {}}) => {
       <div className="title-container">
         <h3>
           {title}
+          { subtitle && (<h4>{subtitle}</h4>)}
         </h3>
-        { subtitle && (<h4>{subtitle}</h4>)}
         <div className="title-icon">
           {icon}
         </div>
