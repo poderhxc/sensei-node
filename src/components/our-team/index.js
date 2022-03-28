@@ -169,13 +169,13 @@ const teamMembers = [
   {
     name: "Jesus Chitty",
     title: "CAO",
-    subtitle: "Chief Arquitect",
+    subtitle: "Chief Arquitect Officer",
     picture: "https://i1.lensdump.com/i/rnjgXb.png",
     linkedin: "https://www.linkedin.com/in/jesuschitty/",
     description: [
       "Co-Founder of EOS Argentina.",
       "Current miner and node validator on over 20 different Blockchains.",
-      "Creator of open source DEFI Platform Evodex.io",
+      "Co-Creator of open source DEFI Platform Evodex.io",
     ]
   }
 ];
