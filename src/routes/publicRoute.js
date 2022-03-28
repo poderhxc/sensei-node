@@ -24,10 +24,5 @@ export const publicRoute = [
         path: "/contact",
         component: ContactPage,
         exact: true
-    },
-    {
-        path: "*",
-        component: ErrorPage,
-        exact: false
     }
 ]

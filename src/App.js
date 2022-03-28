@@ -9,6 +9,7 @@ import PrivateRoute from './routes/privateRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 
 import './styles/index.scss';
+import ErrorPage from './pages/ErrorPage';
 
 
 
@@ -17,8 +18,7 @@ function App() {
     '/',
     '/about-us',
     '/services',
-    '/contact',
-    '*'
+    '/contact'
   ];
   const privateRoutes = [
     '/signature/:id'
@@ -42,6 +42,13 @@ function App() {
       </Route>
       <Route exact path={privateRoutes}>
         <PrivateRoute />
+      </Route>
+      <Route path="*">
+        <ThemeProvider>
+          <AppLayout>
+            <Route component={ErrorPage} />
+          </AppLayout>
+        </ThemeProvider>
       </Route>
     </Switch>
     </Suspense>
