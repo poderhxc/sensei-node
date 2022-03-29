@@ -1,16 +1,14 @@
 import { css } from '@emotion/react';
-import Footer from '../../layouts/Footer';
 
 const styles = css`
 .loader {
-  position: absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
   background: #000;
   z-index: 10;
   display:flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -25,8 +23,8 @@ const styles = css`
 }
 
 .loader-logo {
-  width: 429px;
-  height: auto;
+  width:429px;
+  height:607px;
   background-repeat: no-repeat;
   background-size: contain;
   animation: loader 1s;
@@ -34,7 +32,8 @@ const styles = css`
   animation-direction: alternate;
 }
 .st0 {
-  fill: #3F3FF8
+  fill: #3F3FF8;
+  z-index: 12;
 }
 `;
 
@@ -43,8 +42,8 @@ const Fallback = () => {
    <>
     <div css={styles}>
       <div className='loader'>
-      <div className="loader-logo">
-        <svg v id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.28 841.89" xmlSpace="preserve">
+        <div className="loader-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.28 841.89" xmlSpace="preserve">
         <g>
           <path className="st0" d="M297.25,562.19c-1.46-0.58-2.53-1.67-3.52-2.82c-6.29-7.29-12.58-14.57-18.83-21.89
             c-10-11.7-19.97-23.43-29.97-35.14c-9.72-11.39-19.47-22.76-29.2-34.14c-1.43-1.67-2.84-3.37-4.27-5.04
@@ -73,8 +72,7 @@ const Fallback = () => {
             c-6.96-8.21-13.9-16.43-20.86-24.64c-0.88-1.04-1.65-2.14-2.26-3.36C197.25,365.83,197.25,365.44,197.25,365.05z"/>
         </g>
         </svg>
-      </div>
-      <Footer />
+        </div>
       </div>
     </div>
    </>
