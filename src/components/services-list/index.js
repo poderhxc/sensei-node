@@ -46,6 +46,11 @@ const Styles = css`
     border-top: 3px solid #34C55D;
     margin-top: 20px;
     margin-right: 20px;
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+
     p {
       color: #BABABA;
       font-size: 1.2rem;
