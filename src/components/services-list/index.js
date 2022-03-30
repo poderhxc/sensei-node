@@ -214,7 +214,7 @@ const ServicesList = () => {
     <div id="services" css={[Styles]}>
       <div className="container">
         <h2>
-          <span className="highlight">Sensei Node</span> is for
+          <span className="highlight">SenseiNode</span> is for
           
           <div class="services-list">
             {services.map( (service, index) => <Service key={index} {...service} />)}

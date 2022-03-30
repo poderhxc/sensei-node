@@ -76,7 +76,7 @@ const Footer = () => {
           <img src="https://i3.lensdump.com/i/reGyIC.png"/>
         </div>
         <div className="social-container"> 
-          <span>Connect with Sensei Node</span>
+          <span>Connect with SenseiNode</span>
           <div className="social-buttons">
             <a href="https://twitter.com/SenseiNode" target="_blank">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
