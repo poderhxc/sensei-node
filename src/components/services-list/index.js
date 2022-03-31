@@ -46,6 +46,11 @@ const Styles = css`
     border-top: 3px solid #34C55D;
     margin-top: 20px;
     margin-right: 20px;
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+
     p {
       color: #BABABA;
       font-size: 1.2rem;
@@ -209,7 +214,7 @@ const ServicesList = () => {
     <div id="services" css={[Styles]}>
       <div className="container">
         <h2>
-          <span className="highlight">Sensei Node</span> is for
+          <span className="highlight">SenseiNode</span> is for
           
           <div class="services-list">
             {services.map( (service, index) => <Service key={index} {...service} />)}

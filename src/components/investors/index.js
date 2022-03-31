@@ -126,7 +126,7 @@ const Investors = () => {
           </span>
 
           <h2>
-            Sensei Node is backed by these leading investors
+            SenseiNode is backed by these leading investors
           </h2>
 
           <h3>Institutionals</h3>

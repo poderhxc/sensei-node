@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 
 import AppLayout from './layouts/AppLayout';
 import ThemeProvider from './contexts/ThemeContext';
@@ -9,21 +9,23 @@ import PrivateRoute from './routes/privateRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 
 import './styles/index.scss';
+import Fallback from './components/fallback';
 
-
+const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 
 function App() {
   const publicRoutes = [
     '/',
     '/about-us',
     '/services',
-    '/contact',
+    '/contact'
   ];
   const privateRoutes = [
     '/signature/:id'
   ];
   return (
     <ErrorBoundary>
+    <Suspense fallback={<Fallback />}>
     <Switch>
       <Route exact path={publicRoutes}>
         <ThemeProvider>
@@ -41,7 +43,15 @@ function App() {
       <Route exact path={privateRoutes}>
         <PrivateRoute />
       </Route>
+      <Route path="*">
+        <ThemeProvider>
+          <AppLayout>
+            <Route component={ErrorPage} />
+          </AppLayout>
+        </ThemeProvider>
+      </Route>
     </Switch>
+    </Suspense>
     </ErrorBoundary>
   );
 }

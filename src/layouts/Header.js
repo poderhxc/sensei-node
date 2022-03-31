@@ -117,7 +117,8 @@ const Header = () => {
     right: 20px;
     top: 20px;
     button {
-      background: #000;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
       color:#fff;
       border:none;
 

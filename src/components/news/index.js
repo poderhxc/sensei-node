@@ -46,7 +46,7 @@ const news = [
   {
     title: "SenseiNode launches a free public node on Algorand",
     date: "9.3.22",
-    description: "A public Algorand Node for community development. Hosted by Sensei Node Inc. To obtain access complete the following form",
+    description: "A public Algorand Node for community development. Hosted by SenseiNode Inc. To obtain access complete the following form",
     picture: "https://i1.lensdump.com/i/rPHWDk.png",
     link: "https://algorand.senseinode.com/",
     font: 'SenseiNode',
