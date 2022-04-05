@@ -115,8 +115,8 @@ const Styles = css`
 const teamMembers = [
   {
     name: "Rodrigo Benzaquen",
-    title: "President",
-    subtitle: "Presidente",
+    title: "CTO",
+    subtitle: "Chief Technology Officer",
     picture: "https://i1.lensdump.com/i/rnjEi3.png",
     linkedin: "https://www.linkedin.com/in/rbenzaquen/",
     description: [
@@ -141,8 +141,8 @@ const teamMembers = [
   },
   {
     name: "Martin Fernandez",
-    title: "CTO",
-    subtitle: "Chief Technology Officer",
+    title: "VP",
+    subtitle: "of Business Development",
     picture: "https://i2.lensdump.com/i/rnjtr7.png",
     linkedin: "https://www.linkedin.com/in/martinfernandez666/",
     description: [
@@ -168,8 +168,8 @@ const teamMembers = [
   },
   {
     name: "Jesus Chitty",
-    title: "CAO",
-    subtitle: "Chief Arquitect Officer",
+    title: "VP",
+    subtitle: "of Technology",
     picture: "https://i1.lensdump.com/i/rnjgXb.png",
     linkedin: "https://www.linkedin.com/in/jesuschitty/",
     description: [
