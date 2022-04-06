@@ -1,9 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { isMobile } from 'react-device-detect';
+import { useParams } from 'react-router-dom';
+import i18n from '../../i18n';
 
 import media from '../../styles/media';
 import Slider from 'react-slick';
+
 import video1 from '../../../public/hero-01.mp4'
 import video2 from '../../../public/hero-02.mp4'
 import video3 from '../../../public/hero-03.mp4'
@@ -158,6 +161,9 @@ const Styles = css`
 `;
 
 const Hero = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   const [ replayVideo, setReplayVideo ] = useState(0);
   const settings = {
     dots: true,
@@ -182,8 +188,8 @@ const Hero = () => {
           <div className="container">
             <div className="title">
               <div>
-                <h1>We are building the backbone for a <br/>decentralized Blockchain in Latin America.</h1>
-                <h2>Distributed across multiple leading local hosting providers all over the region.</h2>
+                <h1 dangerouslySetInnerHTML={i18n(locale, 'hero-1-title')} />
+                <h2 dangerouslySetInnerHTML={i18n(locale, 'hero-1-desc')} />
               </div>
             </div>
           </div>
@@ -196,8 +202,8 @@ const Hero = () => {
 
           <div  className="container">
             <div  className="title">
-                <h1 className="float-left">Enterprise level <br/>Blockchain infrastructure</h1>
-                <h1 className="float-right">Made simple.</h1>
+                <h1 className="float-left" dangerouslySetInnerHTML={i18n(locale, 'hero-2-title')} />
+                <h1 className="float-right" dangerouslySetInnerHTML={i18n(locale, 'hero-2-desc')} />
             </div>
           </div>
         </section>
@@ -208,10 +214,10 @@ const Hero = () => {
           </video>) }
           <div className="container">
             <div className="title">
-                <h1>The Revolution will be Decentralized.</h1>
+                <h1 dangerouslySetInnerHTML={i18n(locale, 'hero-3-title')} />
                 <div>
-                  <h1>Own your node.</h1>
-                  <h2>Accesible and reliable one-click private nodes for everybody.</h2>
+                  <h1 dangerouslySetInnerHTML={i18n(locale, 'hero-3-title-2')} />
+                  <h2 dangerouslySetInnerHTML={i18n(locale, 'hero-3-desc')} />
                 </div>
             </div>
           </div>
@@ -223,4 +229,3 @@ const Hero = () => {
 }
 
 export default Hero;
-

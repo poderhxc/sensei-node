@@ -7,6 +7,7 @@ import sur from '../../../public/sur-ventures.png';
 import spice from '../../../public/spice.png';
 import dg from '../../../public/dg.png';
 import xeibo from '../../../public/xeibo-capital.png';
+import CircleIcon from '../../../public/circle-icon.svg';
 
 
 const Styles = css`
@@ -211,7 +212,7 @@ const Investors = () => {
         </div>
 
       </div>
-      <img src="https://i.lensdump.com/i/rni9s9.png" className="icon" />
+      <img src={CircleIcon} className="icon" />
 
   </div>
   );

@@ -3,35 +3,6 @@ import { useState, createRef, useEffect } from 'react';
 import { css } from '@emotion/react';
 import media from '../../styles/media';
 import NewsIcon from '../icons/news';
-/*
-  {
-    title: "Upcoming Tech Devs in Latam",
-    date: "12.3.22",
-    description: "Automating node deployment on mmultiple protocolsAutomating node deployment on mmultiple protocols",
-    picture: "https://i3.lensdump.com/i/rnZgbZ.png",
-    link: "techinsider.com",
-  },
-  {
-    title: "Upcoming Tech Devs in Latam",
-    date: "12.3.22",
-    description: "Automating node deployment on mmultiple protocolsAutomating node deployment on mmultiple protocols",
-    picture: "https://i3.lensdump.com/i/rnZgbZ.png",
-    link: "techinsider.com",
-  },
-  {
-    title: "Upcoming Tech Devs in Latam",
-    date: "12.3.22",
-    description: "Automating node deployment on mmultiple protocolsAutomating node deployment on mmultiple protocols",
-    picture: "https://i3.lensdump.com/i/rnZgbZ.png",
-    link: "techinsider.com",
-  },
-  {
-    title: "Upcoming Tech Devs in Latam",
-    date: "12.3.22",
-    description: "Automating node deployment on mmultiple protocolsAutomating node deployment on mmultiple protocols",
-    picture: "https://i3.lensdump.com/i/rnZgbZ.png",
-    link: "techinsider.com",
-  },*/
 
 const news = [
 
@@ -41,7 +12,7 @@ const news = [
     description: "Last week we released a Public Node on Algorand  for community development. Along with it we also made public a dockerfile to make it simple for anyone to host their own node. You can find here.",
     picture: "https://i.lensdump.com/i/rPHAse.png",
     link: "https://twitter.com/SenseiNode/status/1490717931939979267?s=20&t=ntC06_86ERaJQ9YuuVyRlQ",
-    font: 'Twitter'
+    source: 'Twitter'
   },
   {
     title: "SenseiNode launches a free public node on Algorand",
@@ -49,7 +20,7 @@ const news = [
     description: "A public Algorand Node for community development. Hosted by Sensei Node Inc. To obtain access complete the following form",
     picture: "https://i1.lensdump.com/i/rPHWDk.png",
     link: "https://algorand.senseinode.com/",
-    font: 'SenseiNode',
+    source: 'SenseiNode',
   },
   {
     title: "The World of NFTs",
@@ -57,11 +28,11 @@ const news = [
     description: "An Infobae special report on NFTs quoting our CTO Martin Fernandez",
     picture: "https://i2.lensdump.com/i/rnjtr7.png",
     link: "https://www.infobae.com/america/tecno/2021/12/07/el-mundo-de-los-nfts-la-tecnologia-que-transforma-industrias-como-el-arte-y-los-videojuegos-pero-con-riesgos/",
-    font: 'Infobae Americas',
+    source: 'Infobae Americas',
   }
 ];
 
-const NewBox = ({title, date, description, picture, link, font}) => {
+const NewBox = ({title, date, description, picture, link, source}) => {
   return(
   <a className="new-container" target="_blank" href={link}>
     <h3>{title}</h3>
@@ -71,7 +42,7 @@ const NewBox = ({title, date, description, picture, link, font}) => {
     <div className="link-icon">
       <div className="icon-container">
         <NewsIcon />
-        <span>{font}</span>
+        <span>{source}</span>
       </div>
     </div>
   </a>
