@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import i18n from '../../i18n';
 
 import { css } from '@emotion/react';
 import media from '../../styles/media';
@@ -16,7 +18,7 @@ const Styles = css`
   .contact-button {
     background: #34C55D;
     border-radius: 35px;
-    padding:5px 40px;
+    padding: 15px 40px;
     font-size: 1.6rem;
     align-self: flex-end;
     margin: 0 auto;
@@ -30,6 +32,7 @@ const Styles = css`
     z-index: 3;
     font-weight: 100;
     text-align: left;
+    padding-bottom: 0;
   }
   .highlight { 
     border:1px solid #fff;
@@ -134,49 +137,42 @@ const Styles = css`
     }
   }
 `;
+
 const services = [
   {
-    title: "Exchanges",
+    title: "exchanges-title",
     icon: <ExchangesIcon />,
-    text: `We enable exchanges to increase their digital assets offering, 
-      or scale their existing one, by providing access to multiple blockchain protocols without the 
-      need for specialized in-house node deployment and management capabilities. Easily access protocol
-      data without the challenge and cost of launching a full archive node.`,
+    text: "exchanges-text",
   },
   {
-    title: "Token Holders",
+    title: "token-holders-title",
     icon: <TokenHoldersIcon />,
-    text: `We empower token holders with direct access to validator nodes on the main 
-      Proof-of Stake protocols. Staking your funds on SenseiNode increases your share
-      on rewards earned by your validator nodes compared to staking on Exchanges, 
-      with no slashing and guaranteed uptime across all networks.`,
+    text: "token-holders-desc",
   },
   {
   },
   {
     button: {
       link: 'https://us5.list-manage.com/contact-form?u=9a345a8d92f88e03240efcfb6&form_id=d832bc00fc84c97d62fa9aa05161379d ',
-      button_text: 'Contact Us'
+      button_text: 'contact-us'
     }
   },
   {
-    title: "Blockchain Protocol Foundations",
+    title: "blockchain-protocol-title",
     icon: <BlockchainIcon />,
-    text: `SenseiNode can help you build the infrastructure that would drive the growth 
-      of your community and adoption of the protocol in Latin America. We ensure a 
-      decentralized deployment by using multiple local hosting providers across all the regions.`,
+    text: "blockchain-protocol-desc",
   },
   {
-    title: "Banks, Custodians",
-    subtitle: "& other Financial Institutions",
+    title: "banks-title",
     icon: <BanksIcon />,
-    text: `We help banks and other financial institutions to extend crypto investment 
-      services to their customers, providing access to staking nodes on Proof-of-Stake protocols
-      while maintaining the custody and full control of their funds.`,
+    text: "banks-desc",
   },
 ];
 
-const Service = ({title, subtitle, icon, text, button = {}}) => {
+const Service = ({title, icon, text, button = {}}) => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = (e) => { setIsOpen(!isOpen); }
   const { button_text, link } = button;
@@ -190,38 +186,39 @@ const Service = ({title, subtitle, icon, text, button = {}}) => {
   return title ? (
     <div onClick={handleOpen} className={className}>
       <div className="title-container">
-        <h3>
-          {title}
-          { subtitle && (<h4>{subtitle}</h4>)}
-        </h3>
+        <h3 dangerouslySetInnerHTML={i18n(locale, title)} />
         <div className="title-icon">
           {icon}
         </div>
       </div>
-      <p>{text}</p>
-    </div> ) : ( button_text ? ( <div className="blank"><a className="contact-button" target="_blank" href={link}>{button_text}</a></div>) :
-        (<div className="blank"></div>)
-      ) 
+      <p dangerouslySetInnerHTML={i18n(locale, text)} />
+    </div> ) : ( button_text ? ( 
+    <div className="blank">
+      <a className="contact-button" target="_blank" href={link} dangerouslySetInnerHTML={i18n(locale, 'contact-us')} />
+    </div> ) : (
+    <div className="blank"></div>
+    )
+  ) 
 };
 
 const ServicesList = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+  
   return (
     <div id="services" css={[Styles]}>
       <div className="container">
-        <h2>
-          <span className="highlight">Sensei Node</span> is for
-          
+        <div>
+          <h2 dangerouslySetInnerHTML={i18n(locale, 'services-title')} />
+
           <div class="services-list">
-            {services.map( (service, index) => <Service key={index} {...service} />)}
-            { isMobile && <a  className="contact-button"  href="https://us5.list-manage.com/contact-form?u=9a345a8d92f88e03240efcfb6&form_id=d832bc00fc84c97d62fa9aa05161379d" target="_blank" >
-                Contact us
-              </a>}
+            { services.map((service, index) => <Service key={index} {...service} />) }
+            { isMobile && <a  className="contact-button"  href="https://us5.list-manage.com/contact-form?u=9a345a8d92f88e03240efcfb6&form_id=d832bc00fc84c97d62fa9aa05161379d" target="_blank"  dangerouslySetInnerHTML={i18n(locale, 'contact-us')} /> }
           </div>
-        </h2>
+        </div>
       </div>
     </div>
   );
 }
 
 export default ServicesList;
-

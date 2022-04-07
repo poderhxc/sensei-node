@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import i18n from '../../i18n';
 
 import { css } from '@emotion/react';
 import media from '../../styles/media';
@@ -200,12 +202,13 @@ const MemberBox = ({name, title, subtitle, picture, linkedin, description}) => {
 }
 
 const OurTeam = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   return (
     <div id="team" css={[Styles]}>
       <div className="container">
-        <span className="tag">
-          Our Team
-        </span>
+        <span className="tag" dangerouslySetInnerHTML={i18n(locale, 'our-team-title')} />
         <div className="members-container">
           { teamMembers.map((member, index) => <MemberBox key={index} {...member} />) }
         </div>

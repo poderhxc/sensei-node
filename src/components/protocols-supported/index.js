@@ -1,6 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import media from '../../styles/media';
+import { useParams } from 'react-router-dom';
+import i18n from '../../i18n';
 
 const Styles = css`
   z-index: 3;
@@ -75,15 +77,13 @@ const Styles = css`
 `;
 
 const ProtocolsSupported = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   return (
     <div css={[Styles]}>
       <div className="container">
-        <h2>
-          <span className="green">
-            Protocols Supported
-          </span>
-          We currently support SenseiNodes on the following protocols:
-        </h2>
+        <h2 dangerouslySetInnerHTML={i18n(locale, 'protocols-title')} />
         <div className="logos-container">
           <div className="logo">
             <img alt="solana" src="https://i3.lensdump.com/i/re5xMQ.png" />

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, createRef, useEffect } from 'react';
 import { css } from '@emotion/react';
+import { useParams } from 'react-router-dom';
+import i18n from '../../i18n';
 import media from '../../styles/media';
 import NewsIcon from '../icons/news';
 
@@ -50,6 +52,9 @@ const NewBox = ({title, date, description, picture, link, source}) => {
 }
 
 const News = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   const [ isDragging, setIsDragging ] = useState(false);
   const [ position, setPosition ] = useState({
     top: 0,
@@ -218,10 +223,8 @@ const News = () => {
   return (
     <div id="news" css={[Styles]}>
       <div className="container">
-        <span className="tag">
-          In the News
-        </span>
-        <h2>See who's talking about SenseiNode in the press.</h2>
+        <span className="tag" dangerouslySetInnerHTML={i18n(locale, 'news-subtitle')} />
+        <h2 dangerouslySetInnerHTML={i18n(locale, 'news-title')} />
       </div>
 
       <div className="slider-container"
