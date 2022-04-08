@@ -7,7 +7,9 @@ import sur from '../../../public/sur-ventures.png';
 import spice from '../../../public/spice.png';
 import dg from '../../../public/dg.png';
 import xeibo from '../../../public/xeibo-capital.png';
-
+import CircleIcon from '../../../public/circle-icon.svg';
+import { useParams } from 'react-router-dom';
+import i18n from '../../i18n';
 
 const Styles = css`
   z-index: 3;
@@ -20,7 +22,8 @@ const Styles = css`
     border-radius: 30px;
     font-weight:100;
     color: #fff;
-    margin:30px 0;  
+    margin:30px 0;
+    font-size: 1.3rem;  
   }
 
   h3 {
@@ -117,53 +120,52 @@ const Styles = css`
 `;
 
 const Investors = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   return (
     <div css={[Styles]}>
       <div className="container">
         <div className="container-rounded">
-          <span className="green-pill">
-            Investors
-          </span>
+          <span className="green-pill" dangerouslySetInnerHTML={i18n(locale, 'investors-title')} />
 
-          <h2>
-            SenseiNode is backed by these leading investors
-          </h2>
+          <h2 dangerouslySetInnerHTML={i18n(locale, 'investors-subtitle')} />
 
-          <h3>Institutionals</h3>
+          <h3 dangerouslySetInnerHTML={i18n(locale, 'investors-subtitle-2')} />
           <div className="logos-container">
             <div className="logo">
-                <a target="_blank" href="https://www.borderlesscapital.io/">
-                 <img alt="borderless"  src={borderless} />
-                </a>
+              <a target="_blank" href="https://www.borderlesscapital.io/">
+                <img alt="borderless"  src={borderless} />
+              </a>
             </div>
             <div className="logo">
-                <a target="_blank" href="https://newtopia.vc/">
-                 <img alt="newtopia"  src={newtopia} />
-                </a>
+              <a target="_blank" href="https://newtopia.vc/">
+                <img alt="newtopia"  src={newtopia} />
+              </a>
             </div>
             <div className="logo">
-                <a target="_blank" href="https://sur.vc/">
-                 <img alt="sur"  src={sur} />
-                </a>
+              <a target="_blank" href="https://sur.vc/">
+                <img alt="sur"  src={sur} />
+              </a>
             </div>
             <div className="logo">
-                <a target="_blank" href="https://spicevc.com/">
-                 <img alt="spice" src={spice} />
-                </a>
+              <a target="_blank" href="https://spicevc.com/">
+                <img alt="spice" src={spice} />
+              </a>
             </div>
             <div className="logo">
-                <a target="_blank" href="https://www.11-11dg.partners/">
-                 <img alt="dg" src={dg} />
-                </a>
+              <a target="_blank" href="https://www.11-11dg.partners/">
+                <img alt="dg" src={dg} />
+              </a>
             </div>
             <div className="logo">
-                <a target="_blank" href="https://xeibocapital.com/">
-                 <img alt="xeibo" src={xeibo} />
-                </a>
+              <a target="_blank" href="https://xeibocapital.com/">
+                <img alt="xeibo" src={xeibo} />
+              </a>
             </div>
           </div>
 
-          <h3>Individuals</h3>
+          <h3 dangerouslySetInnerHTML={i18n(locale, 'investors-subtitle-3')} />
           <div className="logos-container">
             <div className="logo">
               <a href="https://www.linkedin.com/in/abarmat/">Ariel Barmat</a>
@@ -211,10 +213,9 @@ const Investors = () => {
         </div>
 
       </div>
-      <img src="https://i.lensdump.com/i/rni9s9.png" className="icon" />
+      <img src={CircleIcon} className="icon" />
 
   </div>
   );
 }
 export default Investors;
-

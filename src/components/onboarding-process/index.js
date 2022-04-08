@@ -1,6 +1,10 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import media from '../../styles/media';
+import { useParams } from 'react-router-dom';
+import i18n from '../../i18n';
+import bottomLines from '../../../public/bottom-lines.png';
+import bottomCircles from '../../../public/bottom-circles.png';
 
 const Styles = css`
   z-index: 3;
@@ -115,22 +119,21 @@ const Styles = css`
 `;
 
 const OnboardingProcess = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   return (
     <div css={[Styles]}>
       <div className="container">
         <div className="rounded-box">
           <div className="black-container">
-            <h2>We simplify the <span className="bold green">onboarding process</span> <span className="bold">of businesses</span> to the blockchain.</h2>
+            <h2 dangerouslySetInnerHTML={i18n(locale, 'onboarding-process-left')} />
           </div>
-          <div className="green-container">
-            No matter what protocol you need to connect. 
-            Our platform provides a simple node deployment configuration and
-            monitoring process with enterprise-grade security,
-            significantly reducing the time to market without sacrificing the performance.
-          </div>
+          <div className="green-container" dangerouslySetInnerHTML={i18n(locale, 'onboarding-process-right')} />
+            
           <div className="image-container">
-            <img className="btm-lines" src="https://i1.lensdump.com/i/rLzx4H.png" />
-            <img className="mid-circles" src="https://i2.lensdump.com/i/rYoOEC.png" />
+            <img className="btm-lines" src={bottomLines} />
+            <img className="mid-circles" src={bottomCircles} />
           </div>
         </div>
       </div>

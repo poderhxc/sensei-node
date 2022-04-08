@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import { publicRoute } from './routes/publicRoute';
 import SuperRoute from './routes';
 import PrivateRoute from './routes/privateRoute';
-import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from './components/error-boundary';
 
 import './styles/index.scss';
 import Fallback from './components/fallback';
@@ -16,9 +16,7 @@ const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 function App() {
   const publicRoutes = [
     '/',
-    '/about-us',
-    '/services',
-    '/contact'
+    '/:locale',
   ];
   const privateRoutes = [
     '/signature/:id'

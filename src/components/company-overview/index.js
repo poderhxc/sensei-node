@@ -1,6 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import media from '../../styles/media';
+import { useParams } from 'react-router-dom';
+import i18n from '../../i18n';
 
 const Styles = css`
   z-index: 1;
@@ -63,23 +65,17 @@ const Styles = css`
 `;
 
 const CompanyOverview = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   return (
     <div id="about-us" css={[Styles]}>
       <div className="container">
         <div className="gray-background-round">
           <div className="content-left">
-            <span className="tag">
-              Company Overview
-            </span>
-
-            <p>
-              We drive the decentralization of the blockchain
-              ecosystem in Latin America with a <span className="blue-line">simple, 
-              scalable and secure</span> node management platform.
-              Our nodes provide enterprise level availability,
-              distributed on leading hosting facilities locally on
-              each market.
-            </p>
+            <span className="tag" dangerouslySetInnerHTML={i18n(locale, "company-overview-title")} />
+        
+            <p dangerouslySetInnerHTML={i18n(locale, "company-overview-desc")} />
           </div>
         </div>
       </div>

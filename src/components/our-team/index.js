@@ -1,5 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import i18n from '../../i18n';
+
+import jesus from '../../../public/team/jesus-chitty.jpeg';
+import martin from '../../../public/team/martin-fernandez.jpeg';
+import nacho from '../../../public/team/nacho-roizman.jpeg';
+import pablo from '../../../public/team/pablo-larguia.jpeg';
+import rodrigo from '../../../public/team/rodrigo-benzaquen.jpeg';
 
 import { css } from '@emotion/react';
 import media from '../../styles/media';
@@ -25,7 +33,16 @@ const Styles = css`
   p {
     margin-top: 20px;
   }
-
+  .join-button {
+    background: #34C55D;
+    border-radius: 35px;
+    padding:15px 40px;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 40px;
+    z-index: 100;
+    margin: 50px 0px 0px 0px;
+  } 
   .tag {
     background: #fff;
     color: #000;
@@ -34,6 +51,9 @@ const Styles = css`
     font-size: 2rem;
     border: 1px solid #000;
     margin-bottom: 60px;
+  }
+  .subtitle {
+    min-height: 18px;
   }
   
   .members-container {
@@ -47,7 +67,6 @@ const Styles = css`
       content: '';
       width: 30%;
     }
-
     .member-container {
       width: 28%;
       position:relative;
@@ -58,7 +77,6 @@ const Styles = css`
         color: #000;
         border-top:2px solid #000;
       }
-
       span {
         font-size: 1.5rem;
         color: #34C55D;
@@ -81,15 +99,18 @@ const Styles = css`
       }
     }
   }
-
   .linkedin-link {
     width: 55px;
     height:55px;
     position:absolute;
     right: 10px;
     top: 75px;
+    svg {
+      width: 35px;
+      margin-top: 40px;
+      margin-left: 15px;
+    }
   }
-
   ${media.medium} {
     .members-container {
       .member-container {
@@ -103,7 +124,6 @@ const Styles = css`
         }
       }
     }
-
     .container {
       &:after{
         content: none;
@@ -114,101 +134,106 @@ const Styles = css`
 
 const teamMembers = [
   {
-    name: "Rodrigo Benzaquen",
-    title: "President",
-    subtitle: "Presidente",
-    picture: "https://i1.lensdump.com/i/rnjEi3.png",
-    linkedin: "https://www.linkedin.com/in/rbenzaquen/",
+    name: "Pablo Larguia",
+    title: "team-title-1",
+    subtitle: "team-subtitle-1",
+    picture: pablo,
+    linkedin: "https://www.linkedin.com/in/pablolarguia/",
     description: [
-      "MercadoLibre's first employee, managing infrastructure for 15 years.",
-      "Founder of NubeliU, a private cloud company, that was sold to Logicalis in 2017",
-      "Serial entrepreneur and Bitcoin early adopter, having mined and invested in BTC since 2011.",
+      "team-1-desc-1",
+      "team-1-desc-2",
+      "team-1-desc-3",
+      "team-1-desc-4",
     ]
   },
   {
-    name: "Pablo Larguia",
-    title: "CEO",
-    subtitle: "Chief Executive Officer",
-    picture: "https://i.lensdump.com/i/rnjRNF.png",
-    linkedin: "https://www.linkedin.com/in/pablolarguia/",
+    name: "Rodrigo Benzaquen",
+    title: "team-title-2",
+    subtitle: "team-subtitle-2",
+    picture: rodrigo,
+    linkedin: "https://www.linkedin.com/in/rbenzaquen/",
     description: [
-      "Founder of Bumeran",
-      "Founder of Red Innova",
-      "Singularity University GSP14 Alumni",
-      "Board Member Universidad Di Tella",
-      "Crypto Fund & Syndicate RIF.",
+      "team-2-desc-1",
+      "team-2-desc-2",
+      "team-2-desc-3",
     ]
   },
   {
     name: "Martin Fernandez",
-    title: "CTO",
-    subtitle: "Chief Technology Officer",
-    picture: "https://i2.lensdump.com/i/rnjtr7.png",
+    title: "team-title-3",
+    subtitle: "team-subtitle-3",
+    picture: martin,
     linkedin: "https://www.linkedin.com/in/martinfernandez666/",
     description: [
-      "Bitcoin early adopter (2011)",
-      "Expert in PoW mining and POS protocols",
-      "Cofounded EOS Argentina (Block Producer)",
-      "Founder of BTCTrip.com (Bitcoin Startup)",
-      "Start-Up Chile Alumni",
+      "team-3-desc-1",
+      "team-3-desc-2",
+      "team-3-desc-3",
+      "team-3-desc-4",
+      "team-3-desc-5",
     ]
   },
   {
     name: "Nacho Roizman",
-    title: "COO",
-    subtitle: "Chief Operating Officer",
-    picture: "https://i3.lensdump.com/i/rnj14r.png",
+    title: "team-title-4",
+    subtitle: "team-subtitle-4",
+    picture: nacho,
     linkedin: "https://www.linkedin.com/in/iroizman/",
     description: [
-      "+20 years leading multi-country operations in Latin America.",
-      "Founder of USMC, Communitana & Jumba Media Group.",
-      "President of Taringa Network, sold to IOV Labs in 2019.",
-      "Board Member Entrepreneurs Organization since 2016.",
+      "team-4-desc-1",
+      "team-4-desc-2",
+      "team-4-desc-3",
+      "team-4-desc-4",
     ]
   },
   {
     name: "Jesus Chitty",
-    title: "CAO",
-    subtitle: "Chief Arquitect Officer",
-    picture: "https://i1.lensdump.com/i/rnjgXb.png",
+    title: "team-title-5",
+    subtitle: "team-subtitle-5",
+    picture: jesus,
     linkedin: "https://www.linkedin.com/in/jesuschitty/",
     description: [
-      "Co-Founder of EOS Argentina.",
-      "Current miner and node validator on over 20 different Blockchains.",
-      "Co-Creator of open source DEFI Platform Evodex.io",
+      "team-5-desc-1",
+      "team-5-desc-2",
+      "team-5-desc-3",
     ]
   }
 ];
 
 const MemberBox = ({name, title, subtitle, picture, linkedin, description}) => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = (e) => { setIsOpen(!isOpen); }
   return(
   <div onClick={handleOpen} className={`member-container ${isOpen ? 'open' : ''}`}>
     <h3>{name}</h3>
-    <span className="title">{title}</span>
-    <span className="subtitle">{subtitle}</span>
+    <span className="title" dangerouslySetInnerHTML={i18n(locale, title)} />
+    <span className="subtitle" dangerouslySetInnerHTML={i18n(locale, subtitle)} />
     <a className="linkedin-link" href={linkedin} target="_blank">
-      <img src="https://i.lensdump.com/i/rnjwq3.png" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
     </a>
     <img src={picture} />
     <ul>
-      { description && description.map((e, index) => <li key={index}>{e}</li>) }
+      { description && description.map((e, index) => <li key={index} dangerouslySetInnerHTML={i18n(locale, e)} />) }
     </ul>
   </div>
   );
 }
 
 const OurTeam = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   return (
     <div id="team" css={[Styles]}>
       <div className="container">
-        <span className="tag">
-          Our Team
-        </span>
+        <span className="tag" dangerouslySetInnerHTML={i18n(locale, 'our-team-title')} />
         <div className="members-container">
           { teamMembers.map((member, index) => <MemberBox key={index} {...member} />) }
         </div>
+        <a className="join-button" target="_blank" href="https://mailchi.mp/a51956a0bcd9/senseinode-careers"  dangerouslySetInnerHTML={i18n(locale, 'join-us')} />
       </div>
     </div>
   );
