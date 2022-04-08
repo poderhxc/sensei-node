@@ -1,6 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import media from '../styles/media';
+import { useParams } from 'react-router-dom';
+import i18n from '../i18n';
+import senseiLogo from '../../public/sensei-logo-footer.png';
 
 const footerStyle = css`
   padding: 20px;
@@ -69,14 +72,17 @@ const footerStyle = css`
 `;
 
 const Footer = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   return (
     <footer css={[footerStyle]}>
       <nav>
         <div className="sensei-logo-container">
-          <img src="https://i3.lensdump.com/i/reGyIC.png"/>
+          <img src={senseiLogo} />
         </div>
         <div className="social-container"> 
-          <span>Connect with SenseiNode</span>
+          <span dangerouslySetInnerHTML={i18n(locale, 'footer-text')} />
           <div className="social-buttons">
             <a href="https://twitter.com/SenseiNode" target="_blank">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

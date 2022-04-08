@@ -4,6 +4,19 @@ import media from '../../styles/media';
 import { useParams } from 'react-router-dom';
 import i18n from '../../i18n';
 
+import solana from '../../../public/protocols/solana.png';
+import ethereum from '../../../public/protocols/ethereum.png';
+import kusama from '../../../public/protocols/kusama.png';
+
+import bitcoin from '../../../public/protocols/bitcoin.png';
+import algorand from '../../../public/protocols/algorand.png';
+import celo from '../../../public/protocols/celo.png';
+import polkadot from '../../../public/protocols/polkadot.png';
+import avalanche from '../../../public/protocols/avalanche.png';
+import polygon from '../../../public/protocols/polygon.png';
+import fantom from '../../../public/protocols/fantom.png';
+import cosmos from '../../../public/protocols/cosmos.png';
+
 const Styles = css`
   z-index: 3;
   position: relative;
@@ -86,36 +99,50 @@ const ProtocolsSupported = () => {
         <h2 dangerouslySetInnerHTML={i18n(locale, 'protocols-title')} />
         <div className="logos-container">
           <div className="logo">
-            <img alt="solana" src="https://i3.lensdump.com/i/re5xMQ.png" />
+            <img alt="solana" src={solana} />
           </div>
 
           <div className="logo">
-            <img alt="ethereum" src="https://i.lensdump.com/i/reG8tH.png" />
+            <img alt="ethereum" src={ethereum} />
           </div>
 
           <div className="logo">
-            <img alt="kusama" src="https://i2.lensdump.com/i/re5azk.png" />
+            <img alt="kusama" src={kusama} />
           </div>
 
           <div className="logo">
-            <img alt="bitcoin" src="https://i2.lensdump.com/i/reGWPc.png" />
+            <img alt="bitcoin" src={bitcoin} />
           </div>
 
           <div className="logo">
-            <img alt="algorand" src="https://i1.lensdump.com/i/re5G6e.png" />
+            <img alt="algorand" src={algorand} />
           </div>
 
           <div className="logo">
-            <img alt="celo" src="https://i3.lensdump.com/i/re5hbx.png" />
+            <img alt="celo" src={celo} />
           </div>
 
           <div className="logo">
-            <img alt="polkadot" src="https://i1.lensdump.com/i/reGAK1.png" />
+            <img alt="polkadot" src={polkadot} />
           </div>
 
           <div className="logo">
-            <img alt="avalanche" src="https://i.lensdump.com/i/re5yaa.png" />
+            <img alt="avalanche" src={avalanche} />
           </div>
+
+          <div className="logo">
+            <img alt="polygon" src={polygon} />
+          </div>
+
+          <div className="logo">
+            <img alt="fantom" src={fantom} />
+          </div>
+
+          <div className="logo">
+            <img alt="cosmos" src={cosmos} />
+          </div>
+
+          <div className="logo"></div>
         </div>
       </div>
     </div>

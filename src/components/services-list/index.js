@@ -216,7 +216,7 @@ const ServicesList = () => {
         <div>
           <h2 dangerouslySetInnerHTML={i18n(locale, 'services-title')} />
 
-          <div class="services-list">
+          <div className="services-list">
             { services.map((service, index) => <Service key={index} {...service} />) }
             { isMobile && <a  className="contact-button"  href="https://us5.list-manage.com/contact-form?u=9a345a8d92f88e03240efcfb6&form_id=d832bc00fc84c97d62fa9aa05161379d" target="_blank"  dangerouslySetInnerHTML={i18n(locale, 'contact-us')} /> }
           </div>

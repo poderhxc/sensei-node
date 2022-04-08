@@ -9,7 +9,7 @@ const lang = {
 }
 
 const i18n = (locale, key) => {
-  if (!lang[locale] || !lang[locale][key]) {
+  if (lang[locale] === undefined || lang[locale][key] === undefined) {
     console.error(`I18N ERROR: Couldnt get : ${locale}, ${key}`)
 
     if (!lang.us[key]) {

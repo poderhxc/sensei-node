@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { css } from '@emotion/react';
+import { useParams } from 'react-router-dom';
+import i18n from '../i18n';
 
 import media from '../styles/media';
 import { palette } from '../styles/palette';
@@ -10,6 +12,9 @@ import { HashLink as Link } from 'react-router-hash-link';
 import senseiLogo from '../../public/sensei-logo-white.png';
 
 const Header = () => {
+  let { locale } = useParams();
+  locale = locale || 'us';
+
   const { pathname } = useLocation();
   const { isLight, toggleTheme } = useThemeContext();
   const [ menuOpened, setMenuOpened ]= useState(false);
@@ -176,23 +181,32 @@ const Header = () => {
         <nav className="menu">
           <ul>
             <li>
-              <Link onClick={() => setMenuOpened(false)} to="/#about-us">About</Link>
+              <Link onClick={() => setMenuOpened(false)} to="/#about-us" dangerouslySetInnerHTML={i18n(locale, 'about-us')} />
             </li>
             <li>
-              <Link onClick={() => setMenuOpened(false)} to="/#services">
-                Services
-              </Link>
+              <Link onClick={() => setMenuOpened(false)} to="/#services" dangerouslySetInnerHTML={i18n(locale, 'services')} />
             </li>
             <li>
-              <Link onClick={() => setMenuOpened(false)} to="/#team">
-                Team
-              </Link>
+              <Link onClick={() => setMenuOpened(false)} to="/#team" dangerouslySetInnerHTML={i18n(locale, 'team')} />
             </li>
             <li>
-              <Link  onClick={() => setMenuOpened(false)} to="/#news">
-                News
-              </Link>
+              <Link  onClick={() => setMenuOpened(false)} to="/#news" dangerouslySetInnerHTML={i18n(locale, 'news')} />
             </li>
+            { locale != 'es' && <li>
+              <Link onClick={() => setMenuOpened(false)} to="/es">
+                ES
+              </Link>
+              </li> }
+            { locale != 'pt' && <li>
+              <Link  onClick={() => setMenuOpened(false)} to="/pt">
+                PT
+              </Link>
+              </li> }
+            { locale != 'us' && <li>
+              <Link  onClick={() => setMenuOpened(false)} to="/">
+                EN
+              </Link>
+            </li> }
           </ul>
         </nav>
       </div>

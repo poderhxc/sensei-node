@@ -75,7 +75,7 @@ const CompanyOverview = () => {
           <div className="content-left">
             <span className="tag" dangerouslySetInnerHTML={i18n(locale, "company-overview-title")} />
         
-            <div dangerouslySetInnerHTML={i18n(locale, "company-overview-desc")} />
+            <p dangerouslySetInnerHTML={i18n(locale, "company-overview-desc")} />
           </div>
         </div>
       </div>

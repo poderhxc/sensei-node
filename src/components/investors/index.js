@@ -219,4 +219,3 @@ const Investors = () => {
   );
 }
 export default Investors;
-
