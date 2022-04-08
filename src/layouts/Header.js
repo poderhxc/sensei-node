@@ -45,7 +45,6 @@ const Header = () => {
       }
     }
     .menu {
-      width: 400px;
       ul {
         display:flex;
         li {
