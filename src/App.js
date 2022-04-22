@@ -17,6 +17,9 @@ function App() {
   const publicRoutes = [
     '/',
     '/:locale',
+    '/admin/login',
+    '/admin/signup',
+    '/admin/home',
   ];
   const privateRoutes = [
     '/signature/:id'
@@ -26,27 +29,20 @@ function App() {
     <Suspense fallback={<Fallback />}>
     <Switch>
       <Route exact path={publicRoutes}>
-        <ThemeProvider>
-          <AppLayout>
-            {
-              publicRoute.map(({ path, component, exact}) => {
-                return (
-                  <SuperRoute key={path} path={path} component={component} exact={exact} />
-                )
-              })
-            }
-          </AppLayout>
-        </ThemeProvider>
+        {
+          publicRoute.map(({ path, component, exact}) => {
+            return (
+              <SuperRoute key={path} path={path} component={component} exact={exact} />
+            )
+          })
+        }
+
       </Route>
       <Route exact path={privateRoutes}>
         <PrivateRoute />
       </Route>
       <Route path="*">
-        <ThemeProvider>
-          <AppLayout>
-            <Route component={ErrorPage} />
-          </AppLayout>
-        </ThemeProvider>
+        <Route component={ErrorPage} />
       </Route>
     </Switch>
     </Suspense>
