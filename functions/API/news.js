@@ -1,31 +1,63 @@
 const {db} = require("../utils/admin");
 
 exports.getAllNews = (request, response) => {
-  db
-      .collection("news")
-      .orderBy("date", "desc")
-      .get()
-      .then((data) => {
-        // eslint-disable-next-line prefer-const
-        let news = [];
-        data.forEach((doc) => {
-          news.push({
-            date: doc.data().date,
-            description: doc.data().description,
-            link: doc.data().link,
-            picture: doc.data().picture,
-            source: doc.data().source,
-            language: doc.data().language,
-            title: doc.data().title,
-            id: doc.id,
+  const lang = request.params.lang;
+
+  if (!lang || lang === undefined) {
+    db
+        .collection("news")
+        .orderBy("date", "desc")
+        .get()
+        .then((data) => {
+          // eslint-disable-next-line prefer-const
+          let news = [];
+          data.forEach((doc) => {
+            news.push({
+              date: doc.data().date,
+              description: doc.data().description,
+              link: doc.data().link,
+              picture: doc.data().picture,
+              source: doc.data().source,
+              language: doc.data().language,
+              title: doc.data().title,
+              id: doc.id,
+            });
           });
+          return response.json(news);
+        })
+        .catch((err) => {
+          console.error(err);
+          return response.status(500).json({error: err.code});
         });
-        return response.json(news);
-      })
-      .catch((err) => {
-        console.error(err);
-        return response.status(500).json({error: err.code});
-      });
+  } else {
+    db
+        .collection("news")
+        .orderBy("date", "desc")
+        .where("language", "==", lang)
+        .get()
+        .then((data) => {
+          // eslint-disable-next-line prefer-const
+          let news = [];
+          data.forEach((doc) => {
+            news.push({
+              date: doc.data().date,
+              description: doc.data().description,
+              link: doc.data().link,
+              picture: doc.data().picture,
+              source: doc.data().source,
+              language: doc.data().language,
+              title: doc.data().title,
+              id: doc.id,
+            });
+          });
+          return response.json(news);
+        })
+        .catch((err) => {
+          console.error(err);
+          return response.status(500).json({error: err.code});
+        });
+  }
+
 };
 
 exports.postOneNew = (request, response) => {

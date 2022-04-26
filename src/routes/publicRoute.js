@@ -24,7 +24,12 @@ export const publicRoute = [
   {
     path: "/admin/home",
     component: AdminPage,
-    exact: false,
+    exact: true,
+  },
+  {
+    path: "/admin/home/:lang",
+    component: AdminPage,
+    exact: true,
   },
   {
     path: "/:locale",

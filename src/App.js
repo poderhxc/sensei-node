@@ -20,6 +20,7 @@ function App() {
     '/admin/login',
     '/admin/signup',
     '/admin/home',
+    '/admin/home/:lang',
   ];
   const privateRoutes = [
     '/signature/:id'

@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import Account from './components/account';
@@ -21,6 +21,8 @@ import NotesIcon from '@material-ui/icons/Notes';
 import Avatar from '@material-ui/core/avatar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import NavLink from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
 
 import { authMiddleWare } from '../../util/auth';
 
@@ -59,30 +61,149 @@ const styles = (theme) => ({
 		left: '50%',
 		top: '35%'
 	},
-	toolbar: theme.mixins.toolbar
+	toolbar: theme.mixins.toolbar,
+  navLink: {
+    padding: '15px'
+  }
 });
 
-class home extends Component {
-	state = {
-		render: false
+
+
+const AdminPage = (props) => {
+  const [render, setRender] = useState(false);
+  const [userData, setUserData] = useState({
+    firstName: '',
+    lastName: '',
+    profilePicture: '',
+  });
+  const [uiLoading, setUiLoading] = useState(true);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  const { history, classes } = props;
+  const [fetchedUserData, setFetchedUserData] = useState(false);
+	const loadAccountPage = (event) => {
+		setRender(true);
 	};
 
-	loadAccountPage = (event) => {
-		this.setState({ render: true });
+	const loadTodoPage = (event) => {
+		setRender(false);
 	};
 
-	loadTodoPage = (event) => {
-		this.setState({ render: false });
-	};
-
-	logoutHandler = (event) => {
+	const logoutHandler = (event) => {
 		localStorage.removeItem('AuthToken');
-		this.props.history.push('/login');
+		history.push('/login');
 	};
+
+  useEffect(() => {
+    if (!fetchedUserData) {
+      setFetchedUserData(true);
+      authMiddleWare(props.history);
+      const authToken = localStorage.getItem('AuthToken');
+      axios.defaults.headers.common = { Authorization: `${authToken}` };
+      axios
+        .get('http://localhost:5000/senseiweb-d1c41/us-central1/api/user')
+        .then((response) => {
+          setUserData(response.data.userCredentials);
+          setUiLoading(false);
+        })
+        .catch((error) => {
+          setUiLoading(false);
+  
+          if(error.response.status === 403) {
+            history.push('/admin/login')
+          }
+          console.log(error);
+          setErrorMsg('Error in retrieving the data');
+        });
+    }
+  })
+  console.log(classes)
+  return uiLoading ? (
+    <div className={classes.root}>
+      <CircularProgress size={150} className={classes.uiProgess} />
+    </div>
+  ) : (
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar justifyContent="space-between">
+            <Grid item xs={10} sm={10}>
+
+              <Typography variant="h6" noWrap>
+                Sensei node news admin
+              </Typography>
+            </Grid>
+            <Grid item xs={2} sm={2}>
+              <div className="language">
+                <NavLink className={classes.navLink} color="#fff" href="/#/admin/home/en/" >
+                  EN
+                </NavLink>
+                <NavLink className={classes.navLink} color="#fff" href="/#/admin/home/pt/" >
+                  PT
+                </NavLink>
+                <NavLink className={classes.navLink} color="#fff" href="/#/admin/home/es/" >
+                  ES
+                </NavLink>
+                <NavLink className={classes.navLink} color="#fff" href="/#/admin/home/" >
+                  All
+                </NavLink>
+              </div>
+            </Grid>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+          <div className={classes.toolbar} />
+          <Divider />
+          <center>
+            <Avatar src={userData.profilePicture} className={classes.avatar} />
+            <p>
+              {' '}
+              {userData.firstName} {userData.lastName}
+            </p>
+          </center>
+          <Divider />
+          <List>
+            <ListItem button key="Todo" onClick={loadTodoPage}>
+              <ListItemIcon>
+                {' '}
+                <NotesIcon />{' '}
+              </ListItemIcon>
+              <ListItemText primary="Todo" />
+            </ListItem>
+
+            <ListItem button key="Account" onClick={loadAccountPage}>
+              <ListItemIcon>
+                {' '}
+                <AccountBoxIcon />{' '}
+              </ListItemIcon>
+              <ListItemText primary="Account" />
+            </ListItem>
+
+            <ListItem button key="Logout" onClick={logoutHandler}>
+              <ListItemIcon>
+                {' '}
+                <ExitToAppIcon />{' '}
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItem>
+          </List>
+        </Drawer>
+
+        <div>{render ? <Account /> : <News />}</div>
+      </div>
+  );
+}
+/*
+class home extends Component {
 
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			firstName: '',
 			lastName: '',
@@ -97,7 +218,7 @@ class home extends Component {
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
-			.get('http://localhost:5000/sensei-node/us-central1/api/user')
+			.get('http://localhost:5000/senseiweb-d1c41/us-central1/api/user')
 			.then((response) => {
 				this.setState({
 					firstName: response.data.userCredentials.firstName,
@@ -120,7 +241,8 @@ class home extends Component {
 	};
 
 	render() {
-		const { classes } = this.props;		
+		const { classes } = this.props;	
+	
 		if (this.state.uiLoading === true) {
 			return (
 				<div className={classes.root}>
@@ -134,8 +256,19 @@ class home extends Component {
 					<AppBar position="fixed" className={classes.appBar}>
 						<Toolbar>
 							<Typography variant="h6" noWrap>
-								TodoApp
+								Sensei node news admin
 							</Typography>
+              <div className="language">
+                <Link href="/#/admin/home/en/" >
+                  EN
+                </Link>
+                <Link href="/#/admin/home/pt/" >
+                  PT
+                </Link>
+                <Link href="/#/admin/home/es/" >
+                  ES
+                </Link>
+              </div>
 						</Toolbar>
 					</AppBar>
 					<Drawer
@@ -182,11 +315,11 @@ class home extends Component {
 						</List>
 					</Drawer>
 
-					<div>{this.state.render ? <Account /> : <News />}</div>
+					<div>{this.state.render ? <Account /> : <News lang={  this.props.lang } />}</div>
 				</div>
 			);
 		}
 	}
-}
+}*/
 
-export default withStyles(styles)(home);
+export default withStyles(styles)(AdminPage);

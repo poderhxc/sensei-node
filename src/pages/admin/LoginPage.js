@@ -79,7 +79,7 @@ class LoginPage extends Component {
 			password: this.state.password
 		};
 		axios
-			.post('http://localhost:5000/sensei-node/us-central1/api/login', userData)
+			.post('http://localhost:5000/senseiweb-d1c41/us-central1/api/login', userData)
 			.then((response) => {
 				localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
 				this.setState({ 

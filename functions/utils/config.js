@@ -1,9 +1,9 @@
 module.exports = {
-  apiKey: "AIzaSyAvgA06h-V46vfww9--4q6jlT_RQm38z9E",
-  authDomain: "sensei-node.firebaseapp.com",
-  databaseURL: "https://sensei-node-default-rtdb.firebaseio.com",
-  projectId: "sensei-node",
-  storageBucket: "sensei-node.appspot.com",
+  apiKey: "AIzaSyBP5se6jZkC6hSSoXT_2G9097oGCjNsRqU",
+  authDomain: "senseiWeb.firebaseapp.com",
+  databaseURL: "https://senseiWeb-default-rtdb.firebaseio.com",
+  projectId: "senseiWeb",
+  storageBucket: "senseiWeb.appspot.com",
   messagingSenderId: "937253357944",
-  appId: "1:937253357944:web:0062984af8dcd84bd5608d"
+  appId: "1:646652741356:web:4647307107ca7b2c6747c9",
 };

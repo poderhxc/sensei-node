@@ -98,7 +98,7 @@ class account extends Component {
 			})
 			.catch((error) => {
 				if (error.response.status === 403) {
-					this.props.history.push('http://localhost:5000/sensei-node/us-central1/api/login');
+					this.props.history.push('http://localhost:5000/senseiweb-d1c41/us-central1/api/login');
 				}
 				console.log(error);
 				this.setState({ errorMsg: 'Error in retrieving the data' });
@@ -129,7 +129,7 @@ class account extends Component {
 		form_data.append('content', this.state.content);
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
-			.post('http://localhost:5000/sensei-node/us-central1/api/user/image', form_data, {
+			.post('http://localhost:5000/senseiweb-d1c41/us-central1/api/user/image', form_data, {
 				headers: {
 					'content-type': 'multipart/form-data'
 				}
@@ -139,7 +139,7 @@ class account extends Component {
 			})
 			.catch((error) => {
 				if (error.response.status === 403) {
-					this.props.history.push('http://localhost:5000/sensei-node/us-central1/api/login');
+					this.props.history.push('http://localhost:5000/senseiweb-d1c41/us-central1/api/login');
 				}
 				console.log(error);
 				this.setState({
@@ -161,13 +161,13 @@ class account extends Component {
 			country: this.state.country
 		};
 		axios
-			.post('http://localhost:5000/sensei-node/us-central1/api/user', formRequest)
+			.post('http://localhost:5000/senseiweb-d1c41/us-central1/api/user', formRequest)
 			.then(() => {
 				this.setState({ buttonLoading: false });
 			})
 			.catch((error) => {
 				if (error.response.status === 403) {
-					this.props.history.push('http://localhost:5000/sensei-node/us-central1/api/login');
+					this.props.history.push('http://localhost:5000/senseiweb-d1c41/us-central1/api/login');
 				}
 				console.log(error);
 				this.setState({

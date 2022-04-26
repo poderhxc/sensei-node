@@ -20,6 +20,8 @@ const {
 } = require("./API/users");
 
 app.get("/news", getAllNews);
+app.get("/news/:lang", getAllNews);
+
 app.post("/news", auth, postOneNew);
 app.delete("/news/:newId", auth, deleteNew);
 app.put("/news/:newId", auth, editNew);

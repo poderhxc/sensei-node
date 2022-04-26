@@ -241,7 +241,7 @@ const News = () => {
 
   useEffect( () => {
     	axios
-			.get('http://localhost:5000/sensei-node/us-central1/api/news')
+			.get('http://localhost:5000/senseiweb-d1c41/us-central1/api/news')
 			.then((response) => {
 				setNews(response.data);
 			})
