@@ -14,7 +14,6 @@ const {
 const {
   loginUser,
   signUpUser,
-  uploadProfilePhoto,
   getUserDetail,
   updateUserDetails,
 } = require("./API/users");
@@ -29,7 +28,7 @@ app.put("/news/:newId", auth, editNew);
 // Users
 app.post("/login", loginUser);
 app.post("/signup", signUpUser);
-app.post("/user/image", auth, uploadProfilePhoto);
+//app.post("/user/image", auth, uploadProfilePhoto);
 app.get("/user", auth, getUserDetail);
 app.post("/user", auth, updateUserDetails);
 
