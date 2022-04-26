@@ -3,7 +3,7 @@ const app = require("express")();
 const auth = require("./utils/auth");
 const cors = require("cors");
 
-app.use(cors());
+app.use(cors({origin: true}));
 const {
   getAllNews,
   postOneNew,
