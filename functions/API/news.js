@@ -57,7 +57,6 @@ exports.getAllNews = (request, response) => {
           return response.status(500).json({error: err.code});
         });
   }
-
 };
 
 exports.postOneNew = (request, response) => {
