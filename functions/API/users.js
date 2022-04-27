@@ -1,4 +1,4 @@
-const {admin, db} = require("../utils/admin");
+const {db} = require("../utils/admin");
 const config = require("../utils/config");
 
 const firebase = require("firebase");
@@ -163,7 +163,7 @@ exports.uploadProfilePhoto = (request, response) => {
 };
 */
 exports.getUserDetail = (request, response) => {
-  let userData = {};
+  const userData = {};
   db
       .doc(`/users/${request.user.username}`)
       .get()
@@ -180,7 +180,7 @@ exports.getUserDetail = (request, response) => {
 };
 
 exports.updateUserDetails = (request, response) => {
-  let document = db.collection("users").doc(`${request.user.username}`);
+  const document = db.collection("users").doc(`${request.user.username}`);
   document.update(request.body)
       .then(()=> {
         response.json({message: "Updated successfully"});
