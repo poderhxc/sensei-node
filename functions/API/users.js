@@ -99,7 +99,7 @@ exports.signUpUser = (request, response) => {
       });
 };
 
-/*
+
 const deleteImage = (imageName) => {
   const bucket = admin.storage().bucket();
   const path = `${imageName}`;
@@ -161,7 +161,7 @@ exports.uploadProfilePhoto = (request, response) => {
   });
   busboy.end(request.rawBody);
 };
-*/
+
 exports.getUserDetail = (request, response) => {
   const userData = {};
   db
