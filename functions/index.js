@@ -16,6 +16,7 @@ const {
   signUpUser,
   getUserDetail,
   updateUserDetails,
+  uploadProfilePhoto,
 } = require("./API/users");
 
 app.get("/news", getAllNews);
@@ -28,7 +29,7 @@ app.put("/news/:newId", auth, editNew);
 // Users
 app.post("/login", loginUser);
 app.post("/signup", signUpUser);
-//app.post("/user/image", auth, uploadProfilePhoto);
+app.post("/user/image", auth, uploadProfilePhoto);
 app.get("/user", auth, getUserDetail);
 app.post("/user", auth, updateUserDetails);
 
