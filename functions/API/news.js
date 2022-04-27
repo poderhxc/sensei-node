@@ -95,7 +95,7 @@ exports.postOneNew = (request, response) => {
     picture: request.body.picture,
     source: request.body.source,
     title: request.body.title,
-    language: request.body.language,
+    language: request.body.lang,
     username: request.user.username,
   };
 
