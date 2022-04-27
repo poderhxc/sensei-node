@@ -84,7 +84,7 @@ exports.postOneNew = (request, response) => {
     return response.status(400).json({title: "title must not be empty"});
   }
 
-  if (request.body.language.trim() === "") {
+  if (request.body.lang.trim() === "") {
     return response.status(400).json({title: "language must not be empty"});
   }
 
