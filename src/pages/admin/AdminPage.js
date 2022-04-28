@@ -117,7 +117,6 @@ const AdminPage = (props) => {
         });
     }
   })
-  console.log(userData)
   return uiLoading ? (
     <div className={classes.root}>
       <CircularProgress size={150} className={classes.uiProgess} />

@@ -134,7 +134,6 @@ exports.deleteNew = (request, response) => {
 };
 
 exports.editNew = ( request, response ) => {
-  console.log("wtf?", request.body);
   if (request.body.newId || request.body.createdAt) {
     response.status(403).json({message: "Not allowed to edit"});
   }

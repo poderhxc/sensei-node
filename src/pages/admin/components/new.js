@@ -191,11 +191,8 @@ const NewComponent = (props) => {
     }
 
     const fetchData = useCallback(() => {
-        console.log("este es el col", lang);
-
         if (((!isFetching && news.length === 0) 
         || fetchedLang != lang)) {
-        console.log("este es el fecct");
         setIsFetching(true);
         const authToken = localStorage.getItem('AuthToken');
         axios.defaults.headers.common = { Authorization: `${authToken}` };

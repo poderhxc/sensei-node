@@ -119,16 +119,14 @@ exports.uploadProfilePhoto = (request, response) => {
   const bb = busboy({headers: request.headers});
   let imageFileName;
   let imageToBeUploaded = {};
-  console.log("imageFileName1", imageFileName);
   bb.on("file", (name, file, info) => {
     const {filename, encoding, mimeType} = info;
-    console.log(mimeType);
+
     if (mimeType !== "image/png" && mimeType !== "image/jpeg") {
       return response.status(400).json({error: "Wrong file type submited"});
     }
     const imageExtension = filename.split(".")[filename.split(".").length - 1];
     imageFileName = `${request.user.username}.${imageExtension}`;
-    console.log("imageFileName2", imageFileName);
 
     const filePath = path.join(os.tmpdir(), imageFileName);
     imageToBeUploaded = {filePath, mimeType};
@@ -136,7 +134,6 @@ exports.uploadProfilePhoto = (request, response) => {
   });
   // eslint-disable-next-line no-undef
   deleteImage(imageFileName);
-  console.log("imageFileName3", imageFileName);
 
   bb.on("finish", () => {
     admin
@@ -151,8 +148,6 @@ exports.uploadProfilePhoto = (request, response) => {
           },
         })
         .then(() => {
-          console.log("imageFileName4", imageFileName);
-
           const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${imageFileName}?alt=media`;
           return db.doc(`/users/${request.user.username}`).update({
             imageUrl,

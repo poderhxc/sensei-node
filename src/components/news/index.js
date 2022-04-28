@@ -55,7 +55,6 @@ const Oldnews = [
 const NewBox = ({title, date, description, picture, link, source}) => {
   let { locale } = useParams();
   locale = locale || 'us';
-  console.log(DateTime.fromFormat(date, 'd.m.yy'));
 
   return(
     <a className="new-container" target="_blank" href={link}>
@@ -262,7 +261,6 @@ const News = () => {
           // to get a value that is either negative, positive, or zero.
           return DateTime.fromFormat(a.date, 'd.m.yy').diff(DateTime.fromFormat(b.date, 'd.m.yy')).milliseconds
         });
-        console.log("news;", news)
 				setNews(news);
 			})
 			.catch((err) => {
