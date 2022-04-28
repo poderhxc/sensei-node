@@ -84,7 +84,7 @@ class account extends Component {
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
-			.get('/user')
+			.get('https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/user')
 			.then((response) => {
 				this.setState({
 					firstName: response.data.userCredentials.firstName,
@@ -98,7 +98,7 @@ class account extends Component {
 			})
 			.catch((error) => {
 				if (error.response.status === 403) {
-					this.props.history.push('http://localhost:5000/senseiweb-d1c41/us-central1/api/login');
+					this.props.history.push('https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/login');
 				}
 				console.log(error);
 				this.setState({ errorMsg: 'Error in retrieving the data' });
@@ -139,7 +139,7 @@ class account extends Component {
 			})
 			.catch((error) => {
 				if (error.response.status === 403) {
-					this.props.history.push('http://localhost:5000/senseiweb-d1c41/us-central1/api/login');
+					this.props.history.push('https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/login');
 				}
 				console.log(error);
 				this.setState({
@@ -161,13 +161,13 @@ class account extends Component {
 			country: this.state.country
 		};
 		axios
-			.post('http://localhost:5000/senseiweb-d1c41/us-central1/api/user', formRequest)
+			.post('https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/user', formRequest)
 			.then(() => {
 				this.setState({ buttonLoading: false });
 			})
 			.catch((error) => {
 				if (error.response.status === 403) {
-					this.props.history.push('http://localhost:5000/senseiweb-d1c41/us-central1/api/login');
+					this.props.history.push('https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/login');
 				}
 				console.log(error);
 				this.setState({
@@ -286,17 +286,6 @@ class account extends Component {
 											disabled={true}
 											variant="outlined"
 											value={this.state.username}
-											onChange={this.handleChange}
-										/>
-									</Grid>
-									<Grid item md={6} xs={12}>
-										<TextField
-											fullWidth
-											label="Country"
-											margin="dense"
-											name="country"
-											variant="outlined"
-											value={this.state.country}
 											onChange={this.handleChange}
 										/>
 									</Grid>

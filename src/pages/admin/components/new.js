@@ -92,7 +92,6 @@ const NewComponent = (props) => {
     const [openNew, setOpenNew] = useState({});
     const [errors, setErrors] = useState([]);
     const [uiLoading, setUiLoading] = useState(true);
-    const [viewOpen, setViewOpen] = useState(false);
     const [buttonType, setButtonType] = useState('');
     const [open, setOpen] = useState(false);
     const [fetchedLang, setFetchedLang] = useState(false);
@@ -101,7 +100,6 @@ const NewComponent = (props) => {
     const { lang } = useParams();
   
     const handleClose = (event) => {
-      console.log("aeaeae")
       setOpen(false);
     };
     
@@ -120,13 +118,13 @@ const NewComponent = (props) => {
       let options = {};
       if (buttonType === 'Edit') {
         options = {
-          url: `http://localhost:5000/senseiweb-d1c41/us-central1/api/news/${openNew.id}`,
+          url: `https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/news/${openNew.id}`,
           method: 'put',
           data: userNew
         };
       } else {  
         options = {
-          url: 'http://localhost:5000/senseiweb-d1c41/us-central1/api/news',
+          url: 'https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/news',
           method: 'post',
           data: userNew
         };
@@ -152,7 +150,7 @@ const NewComponent = (props) => {
       axios.defaults.headers.common = { Authorization: `${authToken}` };
       let newId = data.newRow.id;
       axios
-        .delete(`http://localhost:5000/senseiweb-d1c41/us-central1/api/news/${newId}`)
+        .delete(`https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/news/${newId}`)
         .then(() => {
           window.location.reload();
         })
@@ -188,19 +186,7 @@ const NewComponent = (props) => {
         picture: data.newRow.picture,
         date: data.newRow.date,
         lang: data.newRow.language,
-      });
-    }
-  
-    const handleViewOpen = (data) => {   
-      setViewOpen(true);
-      setOpenNew({
-        title: data.newRow.title,
-        description: data.newRow.description,
-        source: data.newRow.source,
-        link: data.newRow.link,
-        picture: data.newRow.picture,
-        date: data.newRow.date,
-        lang: data.newRow.lang,
+        id: data.newRow.id
       });
     }
 
@@ -213,10 +199,10 @@ const NewComponent = (props) => {
         setIsFetching(true);
         const authToken = localStorage.getItem('AuthToken');
         axios.defaults.headers.common = { Authorization: `${authToken}` };
-        let url = `http://localhost:5000/senseiweb-d1c41/us-central1/api/news/`;
+        let url = `https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/news/`;
         
         if (lang !== undefined){
-          url = `http://localhost:5000/senseiweb-d1c41/us-central1/api/news/${lang}`;
+          url = `https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/news/${lang}`;
         }
 
         axios
@@ -237,12 +223,9 @@ const NewComponent = (props) => {
     useEffect( () => {
       authMiddleWare(history);
       dayjs.extend(relativeTime);
-
-      console.log("este es el use effect", news.length, fetchedLang, lang);
       fetchData();
     }, [lang]);
 
-    console.log("FLACO", uiLoading);
     return uiLoading === true ? (
       <Loader classes={classes} />
     ) : (
@@ -287,10 +270,7 @@ const NewComponent = (props) => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary" onClick={() => handleViewOpen({ newRow })}>
-                      {' '}
-                      View{' '}
-                    </Button>
+
                     <Button size="small" color="primary" onClick={() => handleEditClickOpen({ newRow })}>
                       Edit
                     </Button>
@@ -306,7 +286,5 @@ const NewComponent = (props) => {
       </main>
     );
 };
-
-
 
 export default withStyles(styles)(NewComponent);

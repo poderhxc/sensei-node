@@ -79,7 +79,7 @@ class LoginPage extends Component {
 			password: this.state.password
 		};
 		axios
-			.post('http://localhost:5000/senseiweb-d1c41/us-central1/api/login', userData)
+			.post('https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/login', userData)
 			.then((response) => {
 				localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
 				this.setState({ 
@@ -150,13 +150,13 @@ class LoginPage extends Component {
 							Sign In
 							{loading && <CircularProgress size={30} className={classes.progess} />}
 						</Button>
-						<Grid container>
+						{ /*<Grid container>
 							<Grid item>
 								<Link href="/#/admin/signup" variant="body2">
 									{"Don't have an account? Sign Up"}
 								</Link>
 							</Grid>
-						</Grid>
+    </Grid> */ }
 						{errors.general && (
 							<Typography variant="body2" className={classes.customError}>
 								{errors.general}

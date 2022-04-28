@@ -85,13 +85,13 @@ const AdminPage = (props) => {
 		setRender(true);
 	};
 
-	const loadTodoPage = (event) => {
+	const loadNewsPage = (event) => {
 		setRender(false);
 	};
 
 	const logoutHandler = (event) => {
 		localStorage.removeItem('AuthToken');
-		history.push('/login');
+		history.push('/admin/login');
 	};
 
   useEffect(() => {
@@ -101,7 +101,7 @@ const AdminPage = (props) => {
       const authToken = localStorage.getItem('AuthToken');
       axios.defaults.headers.common = { Authorization: `${authToken}` };
       axios
-        .get('http://localhost:5000/senseiweb-d1c41/us-central1/api/user')
+        .get('https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/user')
         .then((response) => {
           setUserData(response.data.userCredentials);
           setUiLoading(false);
@@ -117,7 +117,7 @@ const AdminPage = (props) => {
         });
     }
   })
-  console.log(classes)
+  console.log(userData)
   return uiLoading ? (
     <div className={classes.root}>
       <CircularProgress size={150} className={classes.uiProgess} />
@@ -161,7 +161,7 @@ const AdminPage = (props) => {
           <div className={classes.toolbar} />
           <Divider />
           <center>
-            <Avatar src={userData.profilePicture} className={classes.avatar} />
+            <Avatar src={userData.imageUrl} className={classes.avatar} />
             <p>
               {' '}
               {userData.firstName} {userData.lastName}
@@ -169,12 +169,12 @@ const AdminPage = (props) => {
           </center>
           <Divider />
           <List>
-            <ListItem button key="Todo" onClick={loadTodoPage}>
+            <ListItem button key="News" onClick={loadNewsPage}>
               <ListItemIcon>
                 {' '}
                 <NotesIcon />{' '}
               </ListItemIcon>
-              <ListItemText primary="Todo" />
+              <ListItemText primary="News" />
             </ListItem>
 
             <ListItem button key="Account" onClick={loadAccountPage}>
@@ -199,127 +199,5 @@ const AdminPage = (props) => {
       </div>
   );
 }
-/*
-class home extends Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			firstName: '',
-			lastName: '',
-			profilePicture: '',
-			uiLoading: true,
-			imageLoading: false
-		};
-	}
-
-	componentWillMount = () => {
-		authMiddleWare(this.props.history);
-		const authToken = localStorage.getItem('AuthToken');
-		axios.defaults.headers.common = { Authorization: `${authToken}` };
-		axios
-			.get('http://localhost:5000/senseiweb-d1c41/us-central1/api/user')
-			.then((response) => {
-				this.setState({
-					firstName: response.data.userCredentials.firstName,
-					lastName: response.data.userCredentials.lastName,
-					email: response.data.userCredentials.email,
-					phoneNumber: response.data.userCredentials.phoneNumber,
-					country: response.data.userCredentials.country,
-					username: response.data.userCredentials.username,
-					uiLoading: false,
-					profilePicture: response.data.userCredentials.imageUrl
-				});
-			})
-			.catch((error) => {
-				if(error.response.status === 403) {
-					this.props.history.push('/admin/login')
-				}
-				console.log(error);
-				this.setState({ errorMsg: 'Error in retrieving the data' });
-			});
-	};
-
-	render() {
-		const { classes } = this.props;	
-	
-		if (this.state.uiLoading === true) {
-			return (
-				<div className={classes.root}>
-					{this.state.uiLoading && <CircularProgress size={150} className={classes.uiProgess} />}
-				</div>
-			);
-		} else {
-			return (
-				<div className={classes.root}>
-					<CssBaseline />
-					<AppBar position="fixed" className={classes.appBar}>
-						<Toolbar>
-							<Typography variant="h6" noWrap>
-								Sensei node news admin
-							</Typography>
-              <div className="language">
-                <Link href="/#/admin/home/en/" >
-                  EN
-                </Link>
-                <Link href="/#/admin/home/pt/" >
-                  PT
-                </Link>
-                <Link href="/#/admin/home/es/" >
-                  ES
-                </Link>
-              </div>
-						</Toolbar>
-					</AppBar>
-					<Drawer
-						className={classes.drawer}
-						variant="permanent"
-						classes={{
-							paper: classes.drawerPaper
-						}}
-					>
-						<div className={classes.toolbar} />
-						<Divider />
-						<center>
-							<Avatar src={this.state.profilePicture} className={classes.avatar} />
-							<p>
-								{' '}
-								{this.state.firstName} {this.state.lastName}
-							</p>
-						</center>
-						<Divider />
-						<List>
-							<ListItem button key="Todo" onClick={this.loadTodoPage}>
-								<ListItemIcon>
-									{' '}
-									<NotesIcon />{' '}
-								</ListItemIcon>
-								<ListItemText primary="Todo" />
-							</ListItem>
-
-							<ListItem button key="Account" onClick={this.loadAccountPage}>
-								<ListItemIcon>
-									{' '}
-									<AccountBoxIcon />{' '}
-								</ListItemIcon>
-								<ListItemText primary="Account" />
-							</ListItem>
-
-							<ListItem button key="Logout" onClick={this.logoutHandler}>
-								<ListItemIcon>
-									{' '}
-									<ExitToAppIcon />{' '}
-								</ListItemIcon>
-								<ListItemText primary="Logout" />
-							</ListItem>
-						</List>
-					</Drawer>
-
-					<div>{this.state.render ? <Account /> : <News lang={  this.props.lang } />}</div>
-				</div>
-			);
-		}
-	}
-}*/
 
 export default withStyles(styles)(AdminPage);

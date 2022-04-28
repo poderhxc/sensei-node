@@ -84,7 +84,7 @@ class signup extends Component {
 			confirmPassword: this.state.confirmPassword
 		};
 		axios
-			.post('http://localhost:5000/senseiweb-d1c41/us-central1/api/signup', newUserData)
+			.post('https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/signup', newUserData)
 			.then((response) => {
 				localStorage.setItem('AuthToken', `${response.data.token}`);
 				this.setState({ 

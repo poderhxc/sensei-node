@@ -6,6 +6,7 @@ import i18n from '../../i18n';
 import media from '../../styles/media';
 import NewsIcon from '../icons/news';
 import axios from 'axios';
+const { DateTime } = require("luxon");
 
 const Oldnews = [
   {
@@ -54,6 +55,8 @@ const Oldnews = [
 const NewBox = ({title, date, description, picture, link, source}) => {
   let { locale } = useParams();
   locale = locale || 'us';
+  console.log(DateTime.fromFormat(date, 'd.m.yy'));
+
   return(
     <a className="new-container" target="_blank" href={link}>
       <h3>{title}</h3>
@@ -75,6 +78,8 @@ const News = () => {
   locale = locale || 'us';
   const [ news, setNews ]  = useState(false);
   const [ isDragging, setIsDragging ] = useState(false);
+  const [ isFetching, setIsFetching ] = useState(false);
+
   const [ position, setPosition ] = useState({
     top: 0,
     left: 0,
@@ -240,15 +245,32 @@ const News = () => {
   }
 
   useEffect( () => {
+    if (!isFetching) {
+      setIsFetching(true);
+      let lang;
+      if(!locale || locale == 'us'){
+        lang = 'en';
+      } else {
+        lang = locale
+      }
     	axios
-			.get('http://localhost:5000/senseiweb-d1c41/us-central1/api/news')
+			.get(`https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/news/${lang}`)
 			.then((response) => {
-				setNews(response.data);
+        const news = response.data
+        news.sort(function(a,b){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return DateTime.fromFormat(a.date, 'd.m.yy').diff(DateTime.fromFormat(b.date, 'd.m.yy')).milliseconds
+        });
+        console.log("news;", news)
+				setNews(news);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-  });
+    }
+
+  }, []);
 
   return (
     <div id="news" css={[Styles]}>
