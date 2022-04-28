@@ -25,6 +25,7 @@ const Styles = css`
   section {
     height: 100vh;
   }
+  .container { height: 100vh; }
   .slick-slider {height: 100%;}
   h1 {
     font-size: 4rem;

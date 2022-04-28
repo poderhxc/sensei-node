@@ -144,7 +144,6 @@ const Form = () => {
 
             <button onClick={(e)=> {
               e.preventDefault();
-              console.log("enviado papurrii");
             }} css={[ButtonStyles]}> Send </button>
         </form>
 

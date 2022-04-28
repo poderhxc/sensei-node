@@ -5,8 +5,10 @@ import { useParams } from 'react-router-dom';
 import i18n from '../../i18n';
 import media from '../../styles/media';
 import NewsIcon from '../icons/news';
+import axios from 'axios';
+const { DateTime } = require("luxon");
 
-const news = [
+const Oldnews = [
   {
     title: "new-5-title",
     date: "6.4.22",
@@ -49,14 +51,16 @@ const news = [
   }
 ];
 
+
 const NewBox = ({title, date, description, picture, link, source}) => {
   let { locale } = useParams();
   locale = locale || 'us';
+
   return(
     <a className="new-container" target="_blank" href={link}>
-      <h3 dangerouslySetInnerHTML={i18n(locale, title)} />
+      <h3>{title}</h3>
       <span className="date">{date}</span>
-      <p className="title"  dangerouslySetInnerHTML={i18n(locale, description)} />
+      <p className="title"> {description} </p>
       <div className="new-img" style={{backgroundImage: `url(${picture})`}}></div>
       <div className="link-icon">
         <div className="icon-container">
@@ -71,8 +75,10 @@ const NewBox = ({title, date, description, picture, link, source}) => {
 const News = () => {
   let { locale } = useParams();
   locale = locale || 'us';
-
+  const [ news, setNews ]  = useState(false);
   const [ isDragging, setIsDragging ] = useState(false);
+  const [ isFetching, setIsFetching ] = useState(false);
+
   const [ position, setPosition ] = useState({
     top: 0,
     left: 0,
@@ -237,6 +243,33 @@ const News = () => {
     setIsDragging(false);
   }
 
+  useEffect( () => {
+    if (!isFetching) {
+      setIsFetching(true);
+      let lang;
+      if(!locale || locale == 'us'){
+        lang = 'en';
+      } else {
+        lang = locale
+      }
+    	axios
+			.get(`https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/news/${lang}`)
+			.then((response) => {
+        const news = response.data
+        news.sort(function(a,b){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return DateTime.fromFormat(a.date, 'd.m.yy').diff(DateTime.fromFormat(b.date, 'd.m.yy')).milliseconds
+        });
+				setNews(news);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+    }
+
+  }, []);
+
   return (
     <div id="news" css={[Styles]}>
       <div className="container">
@@ -250,7 +283,7 @@ const News = () => {
         onMouseMove={handleMouseMove}
         ref={myRef}>
         <div className="news-container">
-          {news.map((newdata, index) => <NewBox key={index} {...newdata} />) }
+          {news && news.map((newdata, index) => <NewBox key={index} {...newdata} />) }
         </div>
       </div>
     </div>

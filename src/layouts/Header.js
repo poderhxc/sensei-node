@@ -45,7 +45,6 @@ const Header = () => {
       }
     }
     .menu {
-      width: 400px;
       ul {
         display:flex;
         li {
@@ -181,16 +180,16 @@ const Header = () => {
         <nav className="menu">
           <ul>
             <li>
-              <Link onClick={() => setMenuOpened(false)} to="/#about-us" dangerouslySetInnerHTML={i18n(locale, 'about-us')} />
+              <Link onClick={() => setMenuOpened(false)} to={`/${locale}/#about-us`} dangerouslySetInnerHTML={i18n(locale, 'about-us')} />
             </li>
             <li>
-              <Link onClick={() => setMenuOpened(false)} to="/#services" dangerouslySetInnerHTML={i18n(locale, 'services')} />
+              <Link onClick={() => setMenuOpened(false)} to={`/${locale}/#services`} dangerouslySetInnerHTML={i18n(locale, 'services')} />
             </li>
             <li>
-              <Link onClick={() => setMenuOpened(false)} to="/#team" dangerouslySetInnerHTML={i18n(locale, 'team')} />
+              <Link onClick={() => setMenuOpened(false)} to={`/${locale}/#team`} dangerouslySetInnerHTML={i18n(locale, 'team')} />
             </li>
             <li>
-              <Link  onClick={() => setMenuOpened(false)} to="/#news" dangerouslySetInnerHTML={i18n(locale, 'news')} />
+              <Link  onClick={() => setMenuOpened(false)} to={`/${locale}/#news`} dangerouslySetInnerHTML={i18n(locale, 'news')} />
             </li>
             { locale != 'es' && <li>
               <Link onClick={() => setMenuOpened(false)} to="/es">
