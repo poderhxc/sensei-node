@@ -2,81 +2,23 @@ import React from 'react';
 import { useState, createRef, useEffect } from 'react';
 import { css } from '@emotion/react';
 import { useParams } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import i18n from '../../i18n';
 import media from '../../styles/media';
 import NewsIcon from '../icons/news';
 import axios from 'axios';
 const { DateTime } = require("luxon");
+import dayjs from 'dayjs';
+var customParseFormat = require('dayjs/plugin/customParseFormat')
+var isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
+import config from '../../../functions/utils/config';
 
-const Oldnews = [
-  {
-    title: "new-5-title",
-    date: "6.4.22",
-    description: "new-5-desc",
-    picture: "https://i.lensdump.com/i/rh3Xco.jpg",
-    link: "https://www.coindesk.com/business/2022/04/06/senseinode-raises-36m-as-latams-first-blockchain-infrastructure-firm/",
-    source: 'Coindesk'
-  },
-  {
-    title: "new-4-title",
-    date: "6.4.22",
-    description: "new-4-desc",
-    picture: "https://i1.lensdump.com/i/rh3GWC.webp",
-    link: "https://www.infobae.com/economia/2022/04/06/senseinode-como-funciona-la-startup-de-infraestructura-blockchain-en-la-que-invirtieron-5-fundadores-de-unicornios/",
-    source: 'Infobae',
-  },
-  {
-    title: "new-3-title",
-    date: "8.3.22",
-    description: "new-3-desc",
-    picture: "https://i.lensdump.com/i/rPHAse.png",
-    link: "https://twitter.com/SenseiNode/status/1490717931939979267?s=20&t=ntC06_86ERaJQ9YuuVyRlQ",
-    source: 'Twitter'
-  },
-  {
-    title: "new-2-title",
-    date: "9.3.22",
-    description: "new-2-desc",
-    picture: "https://i1.lensdump.com/i/rPHWDk.png",
-    link: "https://algorand.senseinode.com/",
-    source: 'SenseiNode',
-  },
-  {
-    title: "new-1-title",
-    date: "12.3.22",
-    description: "new-1-desc",
-    picture: "https://i2.lensdump.com/i/rnjtr7.png",
-    link: "https://www.infobae.com/america/tecno/2021/12/07/el-mundo-de-los-nfts-la-tecnologia-que-transforma-industrias-como-el-arte-y-los-videojuegos-pero-con-riesgos/",
-    source: 'Infobae Americas',
-  }
-];
-
-
-const NewBox = ({title, date, description, picture, link, source}) => {
-  let { locale } = useParams();
-  locale = locale || 'us';
-
-  return(
-    <a className="new-container" target="_blank" href={link}>
-      <h3>{title}</h3>
-      <span className="date">{date}</span>
-      <p className="title"> {description} </p>
-      <div className="new-img" style={{backgroundImage: `url(${picture})`}}></div>
-      <div className="link-icon">
-        <div className="icon-container">
-          <NewsIcon />
-          <span >{source}</span>
-        </div>
-      </div>
-    </a>
-  );
-}
-
-const News = () => {
+const News = ({history}) => {
   let { locale } = useParams();
   locale = locale || 'us';
   const [ news, setNews ]  = useState(false);
   const [ isDragging, setIsDragging ] = useState(false);
+  const [ isMoving, setIsMoving ] = useState(false);
   const [ isFetching, setIsFetching ] = useState(false);
 
   const [ position, setPosition ] = useState({
@@ -187,20 +129,6 @@ const News = () => {
           width: 100%;
           display: block;
         }
-        .new-img {
-          margin-top: 30px;
-          border-radius: 30px;
-          float:right;
-          margin-bottom:40px;
-          width: 125px;
-          height: 125px;
-          position:absolute;
-          bottom:20px;
-          right:30px;
-          background-size:cover;
-          background-repeat:no-repeat;
-          background-position:center;
-        }
       }
     }
 
@@ -219,7 +147,9 @@ const News = () => {
   const myRef = createRef();
 
   const handleMouseMove = (e) => {
+    e.preventDefault()
     if (isDragging) {
+      setIsMoving(true);
       const dx = e.clientX - position.x;
       const dy = e.clientY - position.y;
 
@@ -230,21 +160,69 @@ const News = () => {
   }
 
   const handleMouseDown = (e) => {
-    setPosition({
-      left: myRef.current.scrollLeft,
-      top: myRef.current.scrollTop,
-      x: e.clientX,
-      y: e.clientY,
-    })
-    setIsDragging(true);
+    e.preventDefault()
+    if (!isDragging) {
+      setIsMoving(false);
+      setPosition({
+        left: myRef.current.scrollLeft,
+        top: myRef.current.scrollTop,
+        x: e.clientX,
+        y: e.clientY,
+      })
+      setIsDragging(true);
+    }
   }
 
   const handleMouseUp = (e) => {
+    e.preventDefault()
+    setIsMoving(false);
     setIsDragging(false);
   }
 
-  useEffect( () => {
-    if (!isFetching) {
+
+  const NewBox = React.memo(({title, date, description, picture, link, source, id, visible}) => {
+    let { locale } = useParams();
+    locale = locale || 'us';
+    const handleClickLink = (e) => {
+      e.preventDefault()
+      if (!isMoving) { 
+        window.location.href = link;
+      }
+    }
+    //const [bgImage, setBgImage] = useState(picture);
+    const image = `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${id}.png?alt=media`;
+  const StylesImg = css`
+        margin-top: 30px;
+        border-radius: 30px;
+        float:right;
+        margin-bottom:40px;
+        width: 125px;
+        height: 125px;
+        position:absolute;
+        bottom:20px;
+        right:30px;
+        background-size:cover;
+        background-repeat:no-repeat;
+        background-position:center;
+        background-image: url(${image});`;
+
+      return visible != "0" && 
+        <a className="new-container" onMouseUp={handleClickLink} target="_blank" href={link}>
+          <h3>{title}</h3>
+          <span className="date">{date}</span>
+          <p className="title"> {description} </p>
+          <div css={[StylesImg]}></div>
+          <div className="link-icon">
+            <div className="icon-container">
+              <NewsIcon />
+              <span >{source}</span>
+            </div>
+          </div>
+        </a> 
+  });
+
+  useEffect(() => {
+    if (!news && !isFetching) {
       setIsFetching(true);
       let lang;
       if(!locale || locale == 'us'){
@@ -255,19 +233,30 @@ const News = () => {
     	axios
 			.get(`https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/news/${lang}`)
 			.then((response) => {
-        const news = response.data
-        news.sort(function(a,b){
-          // Turn your strings into dates, and then subtract them
-          // to get a value that is either negative, positive, or zero.
-          return DateTime.fromFormat(a.date, 'd.m.yy').diff(DateTime.fromFormat(b.date, 'd.m.yy')).milliseconds
+        let fetchedNews = response.data
+        fetchedNews.sort((a,b) => {
+          dayjs.extend(customParseFormat)
+          dayjs.extend(isSameOrBefore)
+
+          const dateA = dayjs(a.date, 'DD.MM.YY');
+          const dateB = dayjs(b.date, 'DD.MM.YY');
+
+          if (dateA.isBefore(dateB)) {
+            return 1;
+          }
+
+          if (dateB.isBefore(dateA)) {
+            return -1;
+          }
+
+          return 0
         });
-				setNews(news);
+				setNews(fetchedNews);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
     }
-
   }, []);
 
   return (
@@ -290,5 +279,5 @@ const News = () => {
   );
 }
 
-export default News;
+export default withRouter(News);
 

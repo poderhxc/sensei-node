@@ -9,6 +9,7 @@ const {
   postOneNew,
   deleteNew,
   editNew,
+  uploadPhoto,
 } = require("./API/news");
 
 const {
@@ -19,12 +20,15 @@ const {
   uploadProfilePhoto,
 } = require("./API/users");
 
+
 app.get("/news", getAllNews);
 app.get("/news/:lang", getAllNews);
 
 app.post("/news", auth, postOneNew);
 app.delete("/news/:newId", auth, deleteNew);
 app.put("/news/:newId", auth, editNew);
+app.post("/news/image", auth, uploadPhoto);
+
 
 // Users
 app.post("/login", loginUser);

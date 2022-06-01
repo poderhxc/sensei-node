@@ -124,7 +124,7 @@ class signup extends Component {
 									label="First Name"
 									name="firstName"
 									autoComplete="firstName"
-									helperText={errors.firstName}
+									helpertext={errors.firstName}
 									error={errors.firstName ? true : false}
 									onChange={this.handleChange}
 								/>
@@ -138,7 +138,7 @@ class signup extends Component {
 									label="Last Name"
 									name="lastName"
 									autoComplete="lastName"
-									helperText={errors.lastName}
+									helpertext={errors.lastName}
 									error={errors.lastName ? true : false}
 									onChange={this.handleChange}
 								/>
@@ -153,7 +153,7 @@ class signup extends Component {
 									label="User Name"
 									name="username"
 									autoComplete="username"
-									helperText={errors.username}
+									helpertext={errors.username}
 									error={errors.username ? true : false}
 									onChange={this.handleChange}
 								/>
@@ -169,7 +169,7 @@ class signup extends Component {
 									name="phoneNumber"
 									autoComplete="phoneNumber"
 									pattern="[7-9]{1}[0-9]{9}"
-									helperText={errors.phoneNumber}
+									helpertext={errors.phoneNumber}
 									error={errors.phoneNumber ? true : false}
 									onChange={this.handleChange}
 								/>
@@ -184,7 +184,7 @@ class signup extends Component {
 									label="Email Address"
 									name="email"
 									autoComplete="email"
-									helperText={errors.email}
+									helpertext={errors.email}
 									error={errors.email ? true : false}
 									onChange={this.handleChange}
 								/>
@@ -199,7 +199,7 @@ class signup extends Component {
 									label="Country"
 									name="country"
 									autoComplete="country"
-									helperText={errors.country}
+									helpertext={errors.country}
 									error={errors.country ? true : false}
 									onChange={this.handleChange}
 								/>
@@ -215,7 +215,7 @@ class signup extends Component {
 									type="password"
 									id="password"
 									autoComplete="current-password"
-									helperText={errors.password}
+									helpertext={errors.password}
 									error={errors.password ? true : false}
 									onChange={this.handleChange}
 								/>
