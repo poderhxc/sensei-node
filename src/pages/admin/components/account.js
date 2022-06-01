@@ -129,7 +129,7 @@ class account extends Component {
 		form_data.append('content', this.state.content);
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
-			.post('http://localhost:5000/senseiweb-d1c41/us-central1/api/user/image', form_data, {
+			.post('https://us-central1-senseiweb-d1c41.cloudfunctions.net/api/user/image', form_data, {
 				headers: {
 					'content-type': 'multipart/form-data'
 				}

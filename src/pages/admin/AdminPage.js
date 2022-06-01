@@ -18,11 +18,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import NotesIcon from '@material-ui/icons/Notes';
-import Avatar from '@material-ui/core/avatar';
+import Avatar from '@material-ui/core/Avatar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import NavLink from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import { useParams } from 'react-router-dom';
 
 import { authMiddleWare } from '../../util/auth';
 
@@ -64,6 +65,17 @@ const styles = (theme) => ({
 	toolbar: theme.mixins.toolbar,
   navLink: {
     padding: '15px'
+  },
+  previewContainer: {
+    maxWidth: '400px',
+    maxHeight: '400px',
+    border: '1px solid #333',
+    borderRadius: '15px',
+  },
+  active: {
+    color: 'black',
+    background: 'white',
+    borderRadius: '100%',
   }
 });
 
@@ -81,6 +93,8 @@ const AdminPage = (props) => {
   const [errorMsg, setErrorMsg] = useState('');
   const { history, classes } = props;
   const [fetchedUserData, setFetchedUserData] = useState(false);
+  const { lang } = useParams();
+
 	const loadAccountPage = (event) => {
 		setRender(true);
 	};
@@ -125,25 +139,24 @@ const AdminPage = (props) => {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar justifyContent="space-between">
+          <Toolbar>
             <Grid item xs={10} sm={10}>
-
               <Typography variant="h6" noWrap>
-                Sensei node news admin
+                Sensei Node Admin
               </Typography>
             </Grid>
             <Grid item xs={2} sm={2}>
               <div className="language">
-                <NavLink className={classes.navLink} color="#fff" href="/#/admin/home/en/" >
+                <NavLink className={`${classes.navLink} ${lang === 'en' ? classes.active : ''}`} color="inherit" href="/#/admin/home/en/" >
                   EN
                 </NavLink>
-                <NavLink className={classes.navLink} color="#fff" href="/#/admin/home/pt/" >
+                <NavLink className={`${classes.navLink} ${lang === 'pt' ? classes.active : ''}`} color="inherit" href="/#/admin/home/pt/" >
                   PT
                 </NavLink>
-                <NavLink className={classes.navLink} color="#fff" href="/#/admin/home/es/" >
+                <NavLink className={`${classes.navLink} ${lang === 'es' ? classes.active : ''}`} color="inherit" href="/#/admin/home/es/" >
                   ES
                 </NavLink>
-                <NavLink className={classes.navLink} color="#fff" href="/#/admin/home/" >
+                <NavLink className={`${classes.navLink} ${lang === undefined ? classes.active : ''}`} color="inherit" href="/#/admin/home/" >
                   All
                 </NavLink>
               </div>
@@ -168,28 +181,28 @@ const AdminPage = (props) => {
           </center>
           <Divider />
           <List>
-            <ListItem button key="News" onClick={loadNewsPage}>
+            <ListItem button key="Noticias" onClick={loadNewsPage}>
               <ListItemIcon>
                 {' '}
                 <NotesIcon />{' '}
               </ListItemIcon>
-              <ListItemText primary="News" />
+              <ListItemText primary="Noticias" />
             </ListItem>
 
-            <ListItem button key="Account" onClick={loadAccountPage}>
+            <ListItem button key="Cuenta" onClick={loadAccountPage}>
               <ListItemIcon>
                 {' '}
                 <AccountBoxIcon />{' '}
               </ListItemIcon>
-              <ListItemText primary="Account" />
+              <ListItemText primary="Cuenta" />
             </ListItem>
 
-            <ListItem button key="Logout" onClick={logoutHandler}>
+            <ListItem button key="Salir" onClick={logoutHandler}>
               <ListItemIcon>
                 {' '}
                 <ExitToAppIcon />{' '}
               </ListItemIcon>
-              <ListItemText primary="Logout" />
+              <ListItemText primary="Salir" />
             </ListItem>
           </List>
         </Drawer>

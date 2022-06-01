@@ -4,7 +4,7 @@ import AnimatedImage from '../animated-image';
 import StyledText from '../styled-text';
 import media from '../../styles/media';
 
-const ImageWithText = ({ align, color="#fff", animated=true, image='https://www.filepicker.io/api/file/zLrHcY60TCuQVWXWJ4tM' }) => {
+const ImageWithText = ({ align, color="inherit", animated=true, image='https://www.filepicker.io/api/file/zLrHcY60TCuQVWXWJ4tM' }) => {
   const Styles = css`
     display: flex;
     align-items: stretch;

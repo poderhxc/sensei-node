@@ -116,11 +116,11 @@ class LoginPage extends Component {
 							required
 							fullWidth
 							id="email"
-							label="Email Address"
+							label="Email"
 							name="email"
 							autoComplete="email"
 							autoFocus
-							helperText={errors.email}
+							helpertext={errors.email}
 							error={errors.email ? true : false}
 							onChange={this.handleChange}
 						/>
@@ -130,11 +130,11 @@ class LoginPage extends Component {
 							required
 							fullWidth
 							name="password"
-							label="Password"
+							label="Contraseña"
 							type="password"
 							id="password"
 							autoComplete="current-password"
-							helperText={errors.password}
+							helpertext={errors.password}
 							error={errors.password ? true : false}
 							onChange={this.handleChange}
 						/>
@@ -147,7 +147,7 @@ class LoginPage extends Component {
 							onClick={this.handleSubmit}
 							disabled={loading || !this.state.email || !this.state.password}
 						>
-							Sign In
+							Entrar
 							{loading && <CircularProgress size={30} className={classes.progess} />}
 						</Button>
 						{ /*<Grid container>

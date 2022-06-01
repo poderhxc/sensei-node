@@ -12,11 +12,15 @@ import CardContent from '@material-ui/core/CardContent';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import { useParams } from 'react-router-dom';
+import config from '../../../../functions/utils/config';
 
 import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { authMiddleWare } from '../util/auth';
+const { DateTime } = require("luxon");
+var customParseFormat = require('dayjs/plugin/customParseFormat')
+var isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
@@ -49,12 +53,14 @@ const styles = ((theme) => ({
     },
     form: {
       width: '98%',
-      marginLeft: 13,
-      marginTop: theme.spacing(3)
+      paddingLeft: 13,
+      paddingTop: theme.spacing(3),
     },
-    toolbar: theme.mixins.toolbar,
     root: {
-      minWidth: 470
+      minWidth: 470,
+      display: 'flex',
+      padding: 15,
+      alignItems: 'center',
     },
     bullet: {
       display: 'inline-block',
@@ -84,6 +90,15 @@ const styles = ((theme) => ({
       right: theme.spacing(1),
       top: theme.spacing(1),
       color: theme.palette.grey[500]
+    },
+    image: {
+      maxWidth: 150,
+      maxHeight: 150,
+      height: 'auto',
+      width: 'auto',
+    },
+    imageContainer: {
+      width: 150,
     }
 }));
 
@@ -171,6 +186,7 @@ const NewComponent = (props) => {
         picture: '',
         lang: '',
 				buttonType: '',
+        visible: '',
 				open: true
 			});
 		};
@@ -185,6 +201,7 @@ const NewComponent = (props) => {
         link: data.newRow.link,
         picture: data.newRow.picture,
         date: data.newRow.date,
+        visible: data.newRow.visible,
         lang: data.newRow.language,
         id: data.newRow.id
       });
@@ -208,8 +225,26 @@ const NewComponent = (props) => {
             setUiLoading(false);
             setIsFetching(false);
             setFetchedLang(lang);
-            setNews(response.data);
+            let news = [...response.data];
 
+            news.sort((a,b) => {
+              dayjs.extend(customParseFormat)
+              dayjs.extend(isSameOrBefore)
+
+              const dateA = dayjs(a.date, 'DD.MM.YY');
+              const dateB = dayjs(b.date, 'DD.MM.YY');
+
+              if (dateA.isBefore(dateB)) {
+                return 1;
+              }
+
+              if (dateB.isBefore(dateA)) {
+                return -1;
+              }
+
+              return 0
+            });
+            setNews(news);
           })
           .catch((err) => {
             console.log(err);
@@ -239,7 +274,6 @@ const NewComponent = (props) => {
         </IconButton>
 
         <Modal
-          classes={classes}
           open={open}
           buttonType={buttonType}
           handleClose={handleClose}
@@ -255,26 +289,32 @@ const NewComponent = (props) => {
               newRow.title && newRow.description &&
               <Grid key={newRow.id} item xs={12} sm={12}>
                 <Card className={classes.root} variant="outlined">
-                  <CardContent>
-                    <Typography variant="h5" component="h2">
-                      {newRow.title}
-                    </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                      {dayjs(newRow.createdAt).fromNow()}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                      {`${newRow.description.substring(0, 65)}`}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
+                    <div className={classes.imageContainer} >
+                      <img className={classes.image} src={`https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${newRow.id}.png?alt=media`} />
+                    </div>
+                    <div>
+                      <CardContent>
+                        <Typography variant="h5" component="h2">
+                          {newRow.title}
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                          {newRow.date}
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                          {newRow.description}
+                        </Typography>
+                      </CardContent>
 
-                    <Button size="small" color="primary" onClick={() => handleEditClickOpen({ newRow })}>
-                      Edit
-                    </Button>
-                    <Button size="small" color="primary" onClick={() => deleteNewHandler({ newRow })}>
-                      Delete
-                    </Button>
-                  </CardActions>
+                      <CardActions>
+                      <Button size="small" color="primary" onClick={() => handleEditClickOpen({ newRow })}>
+                        Editar
+                      </Button>
+                      <Button size="small" color="primary" onClick={() => deleteNewHandler({ newRow })}>
+                        Borrar
+                      </Button>
+                    </CardActions>
+                  </div>
+
                 </Card>
               </Grid>
             )

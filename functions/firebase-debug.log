@@ -1,0 +1,29 @@
+[debug] [2022-05-25T16:07:20.434Z] ----------------------------------------------------------------------
+[debug] [2022-05-25T16:07:20.435Z] Command:       /Users/nmazitelli/.nvm/versions/node/v14.16.1/bin/node /Users/nmazitelli/.nvm/versions/node/v14.16.1/bin/firebase serve
+[debug] [2022-05-25T16:07:20.436Z] CLI Version:   10.7.1
+[debug] [2022-05-25T16:07:20.436Z] Platform:      darwin
+[debug] [2022-05-25T16:07:20.436Z] Node Version:  v14.16.1
+[debug] [2022-05-25T16:07:20.436Z] Time:          Wed May 25 2022 13:07:20 GMT-0300 (Argentina Standard Time)
+[debug] [2022-05-25T16:07:20.437Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-05-25T16:07:20.486Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-05-25T16:07:20.486Z] > authorizing via signed-in user (emanuel.mpxcenter@gmail.com)
+[debug] [2022-05-25T16:07:20.486Z] [iam] checking project senseiweb-d1c41 for permissions ["firebase.projects.get"]
+[debug] [2022-05-25T16:07:20.488Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/senseiweb-d1c41:testIamPermissions [none]
+[debug] [2022-05-25T16:07:20.488Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/senseiweb-d1c41:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-05-25T16:07:21.636Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/senseiweb-d1c41:testIamPermissions 200
+[debug] [2022-05-25T16:07:21.636Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/senseiweb-d1c41:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-05-25T16:07:21.637Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/senseiweb-d1c41 [none]
+[debug] [2022-05-25T16:07:22.595Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/senseiweb-d1c41 200
+[debug] [2022-05-25T16:07:22.595Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/senseiweb-d1c41 {"projectId":"senseiweb-d1c41","projectNumber":"646652741356","displayName":"SenseiWeb","name":"projects/senseiweb-d1c41","resources":{"hostingSite":"senseiweb-d1c41","storageBucket":"senseiweb-d1c41.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[info] 
+[info] === Serving from '/Users/nmazitelli/Desktop/sensei-node'...
+[info] 
+[warn] ⚠  Your requested "node" version "16" doesn't match your global version "14". Using node@14 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"16\" doesn't match your global version \"14\". Using node@14 from host."}}
+[debug] [2022-05-25T16:07:22.609Z] defaultcredentials: writing to file /Users/nmazitelli/.config/firebase/emanuel_mpxcenter_gmail.com_application_default_credentials.json
+[debug] [2022-05-25T16:07:22.611Z] Setting GAC to /Users/nmazitelli/.config/firebase/emanuel_mpxcenter_gmail.com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/nmazitelli/.config/firebase/emanuel_mpxcenter_gmail.com_application_default_credentials.json"}}
+[debug] [2022-05-25T16:07:22.611Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/senseiweb-d1c41/adminSdkConfig [none]
+[debug] [2022-05-25T16:07:23.627Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/senseiweb-d1c41/adminSdkConfig 200
+[debug] [2022-05-25T16:07:23.628Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/senseiweb-d1c41/adminSdkConfig {"projectId":"senseiweb-d1c41","storageBucket":"senseiweb-d1c41.appspot.com","locationId":"us-central"}
+[info] i  functions: Watching "/Users/nmazitelli/Desktop/sensei-node/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/nmazitelli/Desktop/sensei-node/functions\" for Cloud Functions..."}}
+[debug] [2022-05-25T16:07:23.652Z] Validating nodejs source
